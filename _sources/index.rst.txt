@@ -11,7 +11,7 @@
 我会在这里分享一些关于图书创作、计算机技术以及日常生活的文章，希望你会感兴趣！
 
 想要了解更多我的个人信息，
-请访问我的个人主页\ `huangz.me <https://huangz.me/>`_ 。
+请访问我的个人主页\ `huangz.works <https://huangz.works/>`_\ 。
 
 .. toctree::
    :maxdepth: 2

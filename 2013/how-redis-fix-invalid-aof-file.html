@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Redis 处理和修复不合法 AOF 文件的方法 &#8212; huangz.blog</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,9 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="编写《Redis 设计与实现》时用到的工具" href="tools-for-writing-redisbook.html" />
@@ -131,7 +129,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="redis-aof">
-<h1>Redis 处理和修复不合法 AOF 文件的方法<a class="headerlink" href="#redis-aof" title="Permalink to this heading">¶</a></h1>
+<h1>Redis 处理和修复不合法 AOF 文件的方法<a class="headerlink" href="#redis-aof" title="Permalink to this headline">¶</a></h1>
 <p>当 Redis 运行在 AOF 持久化模式之下时，
 每条对数据库进行修改的写命令都会被追加到 AOF 文件中。</p>
 <p>举个例子，
@@ -174,7 +172,7 @@ Redis 将会拒绝使用用户所提供的 AOF 文件来还原数据，
 <p>这篇文章将对 Redis 处理错误 AOF 文件的方法进行介绍，
 并讲解 AOF 修复软件 <code class="docutils literal notranslate"><span class="pre">redis-check-aof</span></code> 的运作原理。</p>
 <section id="id1">
-<h2>前提知识<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<h2>前提知识<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>本文的讨论涉及 Redis 的命令、通讯协议、AOF 持久化和系统文件操作等几个方面的内容，
 如果读者不具备这些前提知识的话，
 请先阅读以下文档：</p>
@@ -186,7 +184,7 @@ Redis 将会拒绝使用用户所提供的 AOF 文件来还原数据，
 </ul>
 </section>
 <section id="id4">
-<h2>写入错误<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<h2>写入错误<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>前面说到，
 AOF 文件的写入可能遭遇两种问题，
 一种是写入错误，
@@ -201,7 +199,7 @@ Redis 可以根据写入错误的情况，
 尝试对错误进行修复。</p>
 <p>以下是 Redis 源码 <code class="docutils literal notranslate"><span class="pre">aof.c</span></code> 文件中的其中一行代码，
 它描述了 Redis 是如何将要追加的新内容写入到 AOF 文件里的：</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">nwritten</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">write</span><span class="p">(</span><span class="n">server</span><span class="p">.</span><span class="n">aof_fd</span><span class="p">,</span><span class="n">server</span><span class="p">.</span><span class="n">aof_buf</span><span class="p">,</span><span class="n">sdslen</span><span class="p">(</span><span class="n">server</span><span class="p">.</span><span class="n">aof_buf</span><span class="p">));</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">nwritten</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">write</span><span class="p">(</span><span class="n">server</span><span class="p">.</span><span class="n">aof_fd</span><span class="p">,</span><span class="n">server</span><span class="p">.</span><span class="n">aof_buf</span><span class="p">,</span><span class="n">sdslen</span><span class="p">(</span><span class="n">server</span><span class="p">.</span><span class="n">aof_buf</span><span class="p">));</span><span class="w"></span>
 </pre></div>
 </div>
 <p>其中 <code class="docutils literal notranslate"><span class="pre">server.aof_fd</span></code> 是 AOF 文件的描述符，
@@ -285,7 +283,7 @@ Redis 也不指望自己能再继续执行下去了，
 </ul>
 </section>
 <section id="id5">
-<h2>停机故障<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<h2>停机故障<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>前面说到，
 在碰到无法自动修复的写入错误时，
 服务器会留下一个带有不完整数据的 AOF 文件，
@@ -388,7 +386,7 @@ AOF is valid
 </div>
 </section>
 <section id="id6">
-<h2>修复命令错误<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<h2>修复命令错误<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <p>在上一个小节，
 我们看到了如何使用 <code class="docutils literal notranslate"><span class="pre">redis-check-aof</span></code> 来检查一个 AOF 文件是否合法，
 并且知道了怎样使用 <code class="docutils literal notranslate"><span class="pre">redis-check-aof</span> <span class="pre">--fix</span></code> 来修复一个 AOF 文件，
@@ -509,7 +507,7 @@ $ od -c invalid.aof
 修复后的文件只保留了合法的前 <code class="docutils literal notranslate"><span class="pre">62</span></code> 字节的内容。</p>
 </section>
 <section id="id7">
-<h2>修复事务错误<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<h2>修复事务错误<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <p>在上一节，
 我们看到了 <code class="docutils literal notranslate"><span class="pre">redis-check-aof</span></code> 如何分析、定位并删除出错的命令内容，
 从而修复一个 AOF 文件。</p>
@@ -630,7 +628,7 @@ $ od -c invalid_transaction.aof
 </div>
 </section>
 <section id="id8">
-<h2>小结<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
+<h2>小结<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
 <p>以上就是本文的所有内容了。</p>
 <p>我们首先观察了 Redis 是如何在磁盘出错时进行自动修复的，
 然后学习了使用 <code class="docutils literal notranslate"><span class="pre">redis-check-aof</span></code> 对 AOF 文件进行手动修复的步骤，
@@ -659,7 +657,7 @@ $ od -c invalid_transaction.aof
     </p>
     <p>
         &copy; Copyright 2024, 黄健宏.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
     </p>
   </div>
 </footer>

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Redis 7.0 RC1 释出报告 &#8212; huangz.blog</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,9 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2021" href="../2021/index.html" />
@@ -140,7 +138,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="redis-7-0-rc1">
-<h1>Redis 7.0 RC1 释出报告<a class="headerlink" href="#redis-7-0-rc1" title="Permalink to this heading">¶</a></h1>
+<h1>Redis 7.0 RC1 释出报告<a class="headerlink" href="#redis-7-0-rc1" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>本文由黄健宏翻译自 <a class="reference external" href="https://groups.google.com/g/redis-db/c/TCvnO4Wu8Zg/m/nQv_rLqsBwAJ">https://groups.google.com/g/redis-db/c/TCvnO4Wu8Zg/m/nQv_rLqsBwAJ</a> ，
@@ -166,7 +164,7 @@ Redis 开发团队释出了 Redis 7.0 的首个候选版本（RC），
 <li><p>请参见下面的”不兼容变化“部分以了解更多可能的兼容问题。</p></li>
 </ol>
 <section id="id1">
-<h2>新特性<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<h2>新特性<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Redis 函数：
 一种扩展 Redis 服务器端脚本的全新方法(#8693)。
@@ -209,7 +207,7 @@ Redis 开发团队释出了 Redis 7.0 的首个候选版本（RC），
 </ul>
 </section>
 <section id="id2">
-<h2>新用户命令和命令参数<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<h2>新用户命令和命令参数<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>ZMPOP, BZMPOP 命令(#9484)。</p></li>
 <li><p>LMPOP, BLMPOP 命令(#9373)。</p></li>
@@ -229,7 +227,7 @@ Redis 开发团队释出了 Redis 7.0 的首个候选版本（RC），
 </ul>
 </section>
 <section id="id3">
-<h2>新管理命令和自省命令以及命令参数<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<h2>新管理命令和自省命令以及命令参数<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>COMMAND DOCS 命令(#9656, #10056, #10104)。</p></li>
 <li><p>COMMAND LIST 命令(#9504)。</p></li>
@@ -243,7 +241,7 @@ Redis 开发团队释出了 Redis 7.0 的首个候选版本（RC），
 </ul>
 </section>
 <section id="id4">
-<h2>那些被扩展了回复的命令<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<h2>那些被扩展了回复的命令<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>COMMAND and COMMAND INFO extended with tips, key-specs and sub-commands
 see <a class="reference external" href="https://redis.io/commands/command">https://redis.io/commands/command</a></p></li>
@@ -255,7 +253,7 @@ see <a class="reference external" href="https://redis.io/commands/command">https
 </ul>
 </section>
 <section id="id5">
-<h2>潜在的不兼容修改<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<h2>潜在的不兼容修改<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Modifying the bind parameter to a non-default value will no longer implicitly disable protected-mode (#9034)</p></li>
 <li><p>Remove EVAL script verbatim replication, propagation, and deterministic execution logic (#9812)
@@ -290,7 +288,7 @@ This has been deprecated and off by default since Redis 6 and is no longer suppo
 </ul>
 </section>
 <section id="id6">
-<h2>安全性改进<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<h2>安全性改进<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Sensitive configs and commands blocked (protected) by default (#9920)</p></li>
 <li><p>Improve bind and protected-mode config handling (#9034)</p></li>
@@ -299,7 +297,7 @@ This has been deprecated and off by default since Redis 6 and is no longer suppo
 </ul>
 </section>
 <section id="id7">
-<h2>性能和资源应用改进<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<h2>性能和资源应用改进<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Significant memory saving and latency improvements in cluster mode (#9356)</p></li>
 <li><p>Significant memory savings in case of many hash or zset keys (#9228)</p></li>
@@ -318,7 +316,7 @@ This has been deprecated and off by default since Redis 6 and is no longer suppo
 </ul>
 </section>
 <section id="id8">
-<h2>其他通用改进<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
+<h2>其他通用改进<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Make partial sync possible after master reboot (#8015)</p></li>
 <li><p>Always create a base AOF file when redis starts from empty (#10102)</p></li>
@@ -326,7 +324,7 @@ This has been deprecated and off by default since Redis 6 and is no longer suppo
 </ul>
 </section>
 <section id="id9">
-<h2>命令行工具的改变<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h2>
+<h2>命令行工具的改变<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>redis-cli –json, and -2 options (#9954)</p></li>
 <li><p>redis-cli –scan, add sleep interval option (#3751)</p></li>
@@ -339,7 +337,7 @@ This has been deprecated and off by default since Redis 6 and is no longer suppo
 </ul>
 </section>
 <section id="id10">
-<h2>平台/工具链支持的相关改进<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h2>
+<h2>平台/工具链支持的相关改进<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Upgrade jemalloc 5.2.1 (#9623)</p></li>
 <li><p>Fix RSS metrics on NetBSD and OpenBSD (#10116, #10149)</p></li>
@@ -348,7 +346,7 @@ This has been deprecated and off by default since Redis 6 and is no longer suppo
 </ul>
 </section>
 <section id="id11">
-<h2>新的配置选项<a class="headerlink" href="#id11" title="Permalink to this heading">¶</a></h2>
+<h2>新的配置选项<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>CONFIG SET/GET can handle multiple configs in one call (#9748, #9914)</p></li>
 <li><p>Support glob pattern matching for config include files (#8980)</p></li>
@@ -367,7 +365,7 @@ This has been deprecated and off by default since Redis 6 and is no longer suppo
 </ul>
 </section>
 <section id="info">
-<h2>INFO 命令的字段以及自省相关的修改<a class="headerlink" href="#info" title="Permalink to this heading">¶</a></h2>
+<h2>INFO 命令的字段以及自省相关的修改<a class="headerlink" href="#info" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>INFO: latencystats section (#9462)</p></li>
 <li><p>INFO: total_active_defrag_time and current_active_defrag_time (#9377)</p></li>
@@ -386,7 +384,7 @@ This has been deprecated and off by default since Redis 6 and is no longer suppo
 </ul>
 </section>
 <section id="api">
-<h2>模块 API 修改<a class="headerlink" href="#api" title="Permalink to this heading">¶</a></h2>
+<h2>模块 API 修改<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Add API for replying with RESP3 types (#8521, #9639, #9632)</p></li>
 <li><p>Add API for parsing RESP3 replies from RM_Call (#9202)</p></li>
@@ -409,7 +407,7 @@ This has been deprecated and off by default since Redis 6 and is no longer suppo
 </ul>
 </section>
 <section id="bug">
-<h2>BUG 修复<a class="headerlink" href="#bug" title="Permalink to this heading">¶</a></h2>
+<h2>BUG 修复<a class="headerlink" href="#bug" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Fix COMMAND GETKEYS on EVAL without keys (#9733)</p></li>
 <li><p>Improve MEMORY USAGE with allocator overheads (#9095)</p></li>
@@ -449,7 +447,7 @@ This has been deprecated and off by default since Redis 6 and is no longer suppo
 </ul>
 </section>
 <section id="id12">
-<h2>已知问题<a class="headerlink" href="#id12" title="Permalink to this heading">¶</a></h2>
+<h2>已知问题<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
 <p>This is a list of known issues that affect this release, and are planned to be
 fixed or completed before Redis 7 is officially released:</p>
 <ul class="simple">
@@ -478,7 +476,7 @@ fixed or completed before Redis 7 is officially released:</p>
     </p>
     <p>
         &copy; Copyright 2024, 黄健宏.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
     </p>
   </div>
 </footer>

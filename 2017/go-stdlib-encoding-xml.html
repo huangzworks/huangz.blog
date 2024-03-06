@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Go 标准库文档翻译：encoding/xml 包 &#8212; huangz.blog</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,9 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -194,41 +192,41 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="go-encoding-xml">
-<h1>Go 标准库文档翻译：encoding/xml 包<a class="headerlink" href="#go-encoding-xml" title="Permalink to this heading">¶</a></h1>
+<h1>Go 标准库文档翻译：encoding/xml 包<a class="headerlink" href="#go-encoding-xml" title="Permalink to this headline">¶</a></h1>
 <p>本文是 Go 标准库中 encoding/xml 包文档的翻译，
 原文地址为：
 <a class="reference external" href="https://golang.org/pkg/encoding/xml/">https://golang.org/pkg/encoding/xml/</a></p>
 <section id="id1">
-<h2>概述<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<h2>概述<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>xml 包实现了一个简单的 XML 1.0 语法分析器，
 这个分析器能够理解 XML 命名空间。</p>
 </section>
 <section id="id2">
-<h2>常量<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="p">(</span>
-<span class="w">    </span><span class="c1">// 一个普通的 XML 首部，可以用于封装的输出结果。</span>
-<span class="w">    </span><span class="c1">// 这个首部不会自动被添加到这个包产生的任何输出中，</span>
-<span class="w">    </span><span class="c1">// 提供这个首部只是为了方便。</span>
-<span class="w">    </span><span class="nx">Header</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">`&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;`</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;\n&quot;</span>
-<span class="p">)</span>
+<h2>常量<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// 一个普通的 XML 首部，可以用于封装的输出结果。</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// 这个首部不会自动被添加到这个包产生的任何输出中，</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// 提供这个首部只是为了方便。</span><span class="w"></span>
+<span class="w">    </span><span class="nx">Header</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">`&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;`</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;\n&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="id3">
-<h2>变量<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<h2>变量<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>HTMLAutoClose 用于说明 HTML 元素是否会自动关闭标签：</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">HTMLAutoClose</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">htmlAutoClose</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">HTMLAutoClose</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">htmlAutoClose</span><span class="w"></span>
 </pre></div>
 </div>
 <p>HTMLEntity 是一个实体 map ，
 这个 map 记录了标准 HTML 实体字符与翻译之间的映射：</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">HTMLEntity</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">htmlEntity</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">HTMLEntity</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">htmlEntity</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="escape">
-<h2>Escape 函数<a class="headerlink" href="#escape" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">Escape</span><span class="p">(</span><span class="nx">w</span><span class="w"> </span><span class="nx">io</span><span class="p">.</span><span class="nx">Writer</span><span class="p">,</span><span class="w"> </span><span class="nx">s</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">)</span>
+<h2>Escape 函数<a class="headerlink" href="#escape" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">Escape</span><span class="p">(</span><span class="nx">w</span><span class="w"> </span><span class="nx">io</span><span class="p">.</span><span class="nx">Writer</span><span class="p">,</span><span class="w"> </span><span class="nx">s</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Escape 的作用跟 EscapeText 类似，
@@ -237,15 +235,15 @@
 高于此版本的平台应该使用 EscapeText 来代替。</p>
 </section>
 <section id="escapetext">
-<h2>EscapeText 函数<a class="headerlink" href="#escapetext" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">EscapeText</span><span class="p">(</span><span class="nx">w</span><span class="w"> </span><span class="nx">io</span><span class="p">.</span><span class="nx">Writer</span><span class="p">,</span><span class="w"> </span><span class="nx">s</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span>
+<h2>EscapeText 函数<a class="headerlink" href="#escapetext" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">EscapeText</span><span class="p">(</span><span class="nx">w</span><span class="w"> </span><span class="nx">io</span><span class="p">.</span><span class="nx">Writer</span><span class="p">,</span><span class="w"> </span><span class="nx">s</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"></span>
 </pre></div>
 </div>
 <p>把与纯文本数据 s 等价的转义后 XML 写入到 w 。</p>
 </section>
 <section id="marshal">
-<h2>Marshal 函数<a class="headerlink" href="#marshal" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">Marshal</span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="kd">interface</span><span class="p">{})</span><span class="w"> </span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span>
+<h2>Marshal 函数<a class="headerlink" href="#marshal" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">Marshal</span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="kd">interface</span><span class="p">{})</span><span class="w"> </span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 <p>返回被编码为 XML 的 v 。</p>
@@ -302,8 +300,8 @@ XML 元素的名字由一系列规则决定，
 那么 Marshal 将返回一个错误。</p>
 </section>
 <section id="marshalindent">
-<h2>MarshalIndent 函数<a class="headerlink" href="#marshalindent" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">MarshalIndent</span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="nx">prefix</span><span class="p">,</span><span class="w"> </span><span class="nx">indent</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span>
+<h2>MarshalIndent 函数<a class="headerlink" href="#marshalindent" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">MarshalIndent</span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="nx">prefix</span><span class="p">,</span><span class="w"> </span><span class="nx">indent</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"> </span><span class="p">([]</span><span class="kt">byte</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 <p>MarshalIndent 的作用跟 Marshal 类似，
@@ -312,61 +310,61 @@ XML 元素的名字由一系列规则决定，
 后跟一个或多个 indent 组成的缩进字符串，
 indent 出现的数量由行的嵌套深度决定。</p>
 <p>示例：</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span><span class="w"></span>
 
-<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
-<span class="w">	</span><span class="s">&quot;encoding/xml&quot;</span>
-<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
-<span class="w">	</span><span class="s">&quot;os&quot;</span>
-<span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">	</span><span class="s">&quot;encoding/xml&quot;</span><span class="w"></span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span><span class="w"></span>
+<span class="w">	</span><span class="s">&quot;os&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 
-<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">	</span><span class="kd">type</span><span class="w"> </span><span class="nx">Address</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<span class="w">		</span><span class="nx">City</span><span class="p">,</span><span class="w"> </span><span class="nx">State</span><span class="w"> </span><span class="kt">string</span>
-<span class="w">	</span><span class="p">}</span>
-<span class="w">	</span><span class="kd">type</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<span class="w">		</span><span class="nx">XMLName</span><span class="w">   </span><span class="nx">xml</span><span class="p">.</span><span class="nx">Name</span><span class="w"> </span><span class="s">`xml:&quot;person&quot;`</span>
-<span class="w">		</span><span class="nx">Id</span><span class="w">        </span><span class="kt">int</span><span class="w">      </span><span class="s">`xml:&quot;id,attr&quot;`</span>
-<span class="w">		</span><span class="nx">FirstName</span><span class="w"> </span><span class="kt">string</span><span class="w">   </span><span class="s">`xml:&quot;name&gt;first&quot;`</span>
-<span class="w">		</span><span class="nx">LastName</span><span class="w">  </span><span class="kt">string</span><span class="w">   </span><span class="s">`xml:&quot;name&gt;last&quot;`</span>
-<span class="w">		</span><span class="nx">Age</span><span class="w">       </span><span class="kt">int</span><span class="w">      </span><span class="s">`xml:&quot;age&quot;`</span>
-<span class="w">		</span><span class="nx">Height</span><span class="w">    </span><span class="kt">float32</span><span class="w">  </span><span class="s">`xml:&quot;height,omitempty&quot;`</span>
-<span class="w">		</span><span class="nx">Married</span><span class="w">   </span><span class="kt">bool</span>
-<span class="w">		</span><span class="nx">Address</span>
-<span class="w">		</span><span class="nx">Comment</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="s">`xml:&quot;,comment&quot;`</span>
-<span class="w">	</span><span class="p">}</span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">	</span><span class="kd">type</span><span class="w"> </span><span class="nx">Address</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">		</span><span class="nx">City</span><span class="p">,</span><span class="w"> </span><span class="nx">State</span><span class="w"> </span><span class="kt">string</span><span class="w"></span>
+<span class="w">	</span><span class="p">}</span><span class="w"></span>
+<span class="w">	</span><span class="kd">type</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">		</span><span class="nx">XMLName</span><span class="w">   </span><span class="nx">xml</span><span class="p">.</span><span class="nx">Name</span><span class="w"> </span><span class="s">`xml:&quot;person&quot;`</span><span class="w"></span>
+<span class="w">		</span><span class="nx">Id</span><span class="w">        </span><span class="kt">int</span><span class="w">      </span><span class="s">`xml:&quot;id,attr&quot;`</span><span class="w"></span>
+<span class="w">		</span><span class="nx">FirstName</span><span class="w"> </span><span class="kt">string</span><span class="w">   </span><span class="s">`xml:&quot;name&gt;first&quot;`</span><span class="w"></span>
+<span class="w">		</span><span class="nx">LastName</span><span class="w">  </span><span class="kt">string</span><span class="w">   </span><span class="s">`xml:&quot;name&gt;last&quot;`</span><span class="w"></span>
+<span class="w">		</span><span class="nx">Age</span><span class="w">       </span><span class="kt">int</span><span class="w">      </span><span class="s">`xml:&quot;age&quot;`</span><span class="w"></span>
+<span class="w">		</span><span class="nx">Height</span><span class="w">    </span><span class="kt">float32</span><span class="w">  </span><span class="s">`xml:&quot;height,omitempty&quot;`</span><span class="w"></span>
+<span class="w">		</span><span class="nx">Married</span><span class="w">   </span><span class="kt">bool</span><span class="w"></span>
+<span class="w">		</span><span class="nx">Address</span><span class="w"></span>
+<span class="w">		</span><span class="nx">Comment</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="s">`xml:&quot;,comment&quot;`</span><span class="w"></span>
+<span class="w">	</span><span class="p">}</span><span class="w"></span>
 
-<span class="w">	</span><span class="nx">v</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">Person</span><span class="p">{</span><span class="nx">Id</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="nx">FirstName</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;John&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">LastName</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Doe&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">Age</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">}</span>
-<span class="w">	</span><span class="nx">v</span><span class="p">.</span><span class="nx">Comment</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot; Need more details. &quot;</span>
-<span class="w">	</span><span class="nx">v</span><span class="p">.</span><span class="nx">Address</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">Address</span><span class="p">{</span><span class="s">&quot;Hanga Roa&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Easter Island&quot;</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">v</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">Person</span><span class="p">{</span><span class="nx">Id</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="nx">FirstName</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;John&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">LastName</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Doe&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">Age</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">}</span><span class="w"></span>
+<span class="w">	</span><span class="nx">v</span><span class="p">.</span><span class="nx">Comment</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot; Need more details. &quot;</span><span class="w"></span>
+<span class="w">	</span><span class="nx">v</span><span class="p">.</span><span class="nx">Address</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">Address</span><span class="p">{</span><span class="s">&quot;Hanga Roa&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Easter Island&quot;</span><span class="p">}</span><span class="w"></span>
 
-<span class="w">	</span><span class="nx">output</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">xml</span><span class="p">.</span><span class="nx">MarshalIndent</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;  &quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;    &quot;</span><span class="p">)</span>
-<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;error: %v\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
-<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">output</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">xml</span><span class="p">.</span><span class="nx">MarshalIndent</span><span class="p">(</span><span class="nx">v</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;  &quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;    &quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;error: %v\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span><span class="p">}</span><span class="w"></span>
 
-<span class="w">	</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdout</span><span class="p">.</span><span class="nx">Write</span><span class="p">(</span><span class="nx">output</span><span class="p">)</span>
-<span class="p">}</span>
+<span class="w">	</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdout</span><span class="p">.</span><span class="nx">Write</span><span class="p">(</span><span class="nx">output</span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>示例执行结果：</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;person</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;13&quot;</span><span class="nt">&gt;</span>
-<span class="w">      </span><span class="nt">&lt;name&gt;</span>
-<span class="w">          </span><span class="nt">&lt;first&gt;</span>John<span class="nt">&lt;/first&gt;</span>
-<span class="w">          </span><span class="nt">&lt;last&gt;</span>Doe<span class="nt">&lt;/last&gt;</span>
-<span class="w">      </span><span class="nt">&lt;/name&gt;</span>
-<span class="w">      </span><span class="nt">&lt;age&gt;</span>42<span class="nt">&lt;/age&gt;</span>
-<span class="w">      </span><span class="nt">&lt;Married&gt;</span>false<span class="nt">&lt;/Married&gt;</span>
-<span class="w">      </span><span class="nt">&lt;City&gt;</span>Hanga<span class="w"> </span>Roa<span class="nt">&lt;/City&gt;</span>
-<span class="w">      </span><span class="nt">&lt;State&gt;</span>Easter<span class="w"> </span>Island<span class="nt">&lt;/State&gt;</span>
-<span class="w">      </span><span class="cm">&lt;!-- Need more details. --&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/person&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>  <span class="nt">&lt;person</span> <span class="na">id=</span><span class="s">&quot;13&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;name&gt;</span>
+          <span class="nt">&lt;first&gt;</span>John<span class="nt">&lt;/first&gt;</span>
+          <span class="nt">&lt;last&gt;</span>Doe<span class="nt">&lt;/last&gt;</span>
+      <span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;age&gt;</span>42<span class="nt">&lt;/age&gt;</span>
+      <span class="nt">&lt;Married&gt;</span>false<span class="nt">&lt;/Married&gt;</span>
+      <span class="nt">&lt;City&gt;</span>Hanga Roa<span class="nt">&lt;/City&gt;</span>
+      <span class="nt">&lt;State&gt;</span>Easter Island<span class="nt">&lt;/State&gt;</span>
+      <span class="cm">&lt;!-- Need more details. --&gt;</span>
+  <span class="nt">&lt;/person&gt;</span>
 </pre></div>
 </div>
 </section>
 <section id="unmarshal">
-<h2>Unmarshal 函数<a class="headerlink" href="#unmarshal" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">Unmarshal</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="w"> </span><span class="kd">interface</span><span class="p">{})</span><span class="w"> </span><span class="kt">error</span>
+<h2>Unmarshal 函数<a class="headerlink" href="#unmarshal" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">Unmarshal</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="w"> </span><span class="kd">interface</span><span class="p">{})</span><span class="w"> </span><span class="kt">error</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Unmarshal 会对 XML 编码的数据进行语法分析，
@@ -448,37 +446,37 @@ Unmarshal 使用大小写敏感的比较操作来对比 XML 元素的名字和�
 <p>Unmarshal 通过为指针设置为一个新分配的值，
 并把元素映射至该值来将一个 XML 元素映射至指针。</p>
 <section id="id4">
-<h3>示例<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+<h3>示例<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>这个示例展示了如何将一个 XML 片段解封至一个具有多个预设字段的值里面。
 需要注意的是，
 Phone 字段并未被修改，
 并且 XML &lt;Company&gt; 元素也被忽略了。
 此外，
 Groups 字段也是根据标签里面提供的元素路径来进行设置的。</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span><span class="w"></span>
 
-<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
-<span class="w">	</span><span class="s">&quot;encoding/xml&quot;</span>
-<span class="w">    </span><span class="s">&quot;fmt&quot;</span>
-<span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">	</span><span class="s">&quot;encoding/xml&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="s">&quot;fmt&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 
-<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">	</span><span class="kd">type</span><span class="w"> </span><span class="nx">Email</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<span class="w">		</span><span class="nx">Where</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="s">`xml:&quot;where,attr&quot;`</span>
-<span class="w">		</span><span class="nx">Addr</span><span class="w">  </span><span class="kt">string</span>
-<span class="w">	</span><span class="p">}</span>
-<span class="w">	</span><span class="kd">type</span><span class="w"> </span><span class="nx">Address</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<span class="w">		</span><span class="nx">City</span><span class="p">,</span><span class="w"> </span><span class="nx">State</span><span class="w"> </span><span class="kt">string</span>
-<span class="w">	</span><span class="p">}</span>
-<span class="w">	</span><span class="kd">type</span><span class="w"> </span><span class="nx">Result</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<span class="w">		</span><span class="nx">XMLName</span><span class="w"> </span><span class="nx">xml</span><span class="p">.</span><span class="nx">Name</span><span class="w"> </span><span class="s">`xml:&quot;Person&quot;`</span>
-<span class="w">		</span><span class="nx">Name</span><span class="w">    </span><span class="kt">string</span><span class="w">   </span><span class="s">`xml:&quot;FullName&quot;`</span>
-<span class="w">		</span><span class="nx">Phone</span><span class="w">   </span><span class="kt">string</span>
-<span class="w">		</span><span class="nx">Email</span><span class="w">   </span><span class="p">[]</span><span class="nx">Email</span>
-<span class="w">		</span><span class="nx">Groups</span><span class="w">  </span><span class="p">[]</span><span class="kt">string</span><span class="w"> </span><span class="s">`xml:&quot;Group&gt;Value&quot;`</span>
-<span class="w">		</span><span class="nx">Address</span>
-<span class="w">	</span><span class="p">}</span>
-<span class="w">	</span><span class="nx">v</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">Result</span><span class="p">{</span><span class="nx">Name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">Phone</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">}</span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">	</span><span class="kd">type</span><span class="w"> </span><span class="nx">Email</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">		</span><span class="nx">Where</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="s">`xml:&quot;where,attr&quot;`</span><span class="w"></span>
+<span class="w">		</span><span class="nx">Addr</span><span class="w">  </span><span class="kt">string</span><span class="w"></span>
+<span class="w">	</span><span class="p">}</span><span class="w"></span>
+<span class="w">	</span><span class="kd">type</span><span class="w"> </span><span class="nx">Address</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">		</span><span class="nx">City</span><span class="p">,</span><span class="w"> </span><span class="nx">State</span><span class="w"> </span><span class="kt">string</span><span class="w"></span>
+<span class="w">	</span><span class="p">}</span><span class="w"></span>
+<span class="w">	</span><span class="kd">type</span><span class="w"> </span><span class="nx">Result</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">		</span><span class="nx">XMLName</span><span class="w"> </span><span class="nx">xml</span><span class="p">.</span><span class="nx">Name</span><span class="w"> </span><span class="s">`xml:&quot;Person&quot;`</span><span class="w"></span>
+<span class="w">		</span><span class="nx">Name</span><span class="w">    </span><span class="kt">string</span><span class="w">   </span><span class="s">`xml:&quot;FullName&quot;`</span><span class="w"></span>
+<span class="w">		</span><span class="nx">Phone</span><span class="w">   </span><span class="kt">string</span><span class="w"></span>
+<span class="w">		</span><span class="nx">Email</span><span class="w">   </span><span class="p">[]</span><span class="nx">Email</span><span class="w"></span>
+<span class="w">		</span><span class="nx">Groups</span><span class="w">  </span><span class="p">[]</span><span class="kt">string</span><span class="w"> </span><span class="s">`xml:&quot;Group&gt;Value&quot;`</span><span class="w"></span>
+<span class="w">		</span><span class="nx">Address</span><span class="w"></span>
+<span class="w">	</span><span class="p">}</span><span class="w"></span>
+<span class="w">	</span><span class="nx">v</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">Result</span><span class="p">{</span><span class="nx">Name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">Phone</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;none&quot;</span><span class="p">}</span><span class="w"></span>
 
 <span class="w">	</span><span class="nx">data</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="s">`</span>
 <span class="s">        &lt;Person&gt;</span>
@@ -497,19 +495,19 @@ Groups 字段也是根据标签里面提供的元素路径来进行设置的。<
 <span class="s">            &lt;City&gt;Hanga Roa&lt;/City&gt;</span>
 <span class="s">            &lt;State&gt;Easter Island&lt;/State&gt;</span>
 <span class="s">        &lt;/Person&gt;</span>
-<span class="s">    `</span>
-<span class="w">	</span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">xml</span><span class="p">.</span><span class="nx">Unmarshal</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">data</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">v</span><span class="p">)</span>
-<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;error: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
-<span class="w">		</span><span class="k">return</span>
-<span class="w">	</span><span class="p">}</span>
-<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;XMLName: %#v\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">XMLName</span><span class="p">)</span>
-<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Name: %q\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">Name</span><span class="p">)</span>
-<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Phone: %q\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">Phone</span><span class="p">)</span>
-<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Email: %v\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">Email</span><span class="p">)</span>
-<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Groups: %v\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">Groups</span><span class="p">)</span>
-<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Address: %v\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">Address</span><span class="p">)</span>
-<span class="p">}</span>
+<span class="s">    `</span><span class="w"></span>
+<span class="w">	</span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">xml</span><span class="p">.</span><span class="nx">Unmarshal</span><span class="p">([]</span><span class="nb">byte</span><span class="p">(</span><span class="nx">data</span><span class="p">),</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">v</span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;error: %v&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w"></span>
+<span class="w">		</span><span class="k">return</span><span class="w"></span>
+<span class="w">	</span><span class="p">}</span><span class="w"></span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;XMLName: %#v\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">XMLName</span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Name: %q\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">Name</span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Phone: %q\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">Phone</span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Email: %v\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">Email</span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Groups: %v\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">Groups</span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;Address: %v\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">v</span><span class="p">.</span><span class="nx">Address</span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>输出：</p>
@@ -524,101 +522,101 @@ Address: {Hanga Roa Easter Island}
 </section>
 </section>
 <section id="attr">
-<h2>Attr 类型<a class="headerlink" href="#attr" title="Permalink to this heading">¶</a></h2>
+<h2>Attr 类型<a class="headerlink" href="#attr" title="Permalink to this headline">¶</a></h2>
 <p>Attr 用于表示 XML 元素中以 Name=Value 格式存在的属性：</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">Attr</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">Name</span><span class="w">  </span><span class="nx">Name</span>
-<span class="w">    </span><span class="nx">Value</span><span class="w"> </span><span class="kt">string</span>
-<span class="p">}</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">Attr</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">Name</span><span class="w">  </span><span class="nx">Name</span><span class="w"></span>
+<span class="w">    </span><span class="nx">Value</span><span class="w"> </span><span class="kt">string</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="chardata">
-<h2>CharData 类型<a class="headerlink" href="#chardata" title="Permalink to this heading">¶</a></h2>
+<h2>CharData 类型<a class="headerlink" href="#chardata" title="Permalink to this headline">¶</a></h2>
 <p>CharData 用于表示 XML 字符数据（原始文本），
 而 XML 转义序列（sequence）将被 CharData 表示的字符代替。</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">CharData</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">CharData</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="w"></span>
 </pre></div>
 </div>
 <section id="chardata-copy">
-<h3>(CharData) Copy 方法<a class="headerlink" href="#chardata-copy" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">c</span><span class="w"> </span><span class="nx">CharData</span><span class="p">)</span><span class="w"> </span><span class="nx">Copy</span><span class="p">()</span><span class="w"> </span><span class="nx">CharData</span>
+<h3>(CharData) Copy 方法<a class="headerlink" href="#chardata-copy" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">c</span><span class="w"> </span><span class="nx">CharData</span><span class="p">)</span><span class="w"> </span><span class="nx">Copy</span><span class="p">()</span><span class="w"> </span><span class="nx">CharData</span><span class="w"></span>
 </pre></div>
 </div>
 <p>返回 CharData 的一个副本。</p>
 </section>
 </section>
 <section id="comment">
-<h2>Comment 类型<a class="headerlink" href="#comment" title="Permalink to this heading">¶</a></h2>
+<h2>Comment 类型<a class="headerlink" href="#comment" title="Permalink to this headline">¶</a></h2>
 <p>Comment 用于表示格式为 <code class="docutils literal notranslate"><span class="pre">&lt;!--comment--&gt;</span></code> 的 XML 注释，
 但注释的 <code class="docutils literal notranslate"><span class="pre">&lt;!--</span></code> 标记以及 <code class="docutils literal notranslate"><span class="pre">--&gt;</span></code> 标记不会被包含在字节里面。</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">Comment</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">Comment</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="w"></span>
 </pre></div>
 </div>
 <section id="comment-copy">
-<h3>(Comment) Copy 方法<a class="headerlink" href="#comment-copy" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">c</span><span class="w"> </span><span class="nx">Comment</span><span class="p">)</span><span class="w"> </span><span class="nx">Copy</span><span class="p">()</span><span class="w"> </span><span class="nx">Comment</span>
+<h3>(Comment) Copy 方法<a class="headerlink" href="#comment-copy" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">c</span><span class="w"> </span><span class="nx">Comment</span><span class="p">)</span><span class="w"> </span><span class="nx">Copy</span><span class="p">()</span><span class="w"> </span><span class="nx">Comment</span><span class="w"></span>
 </pre></div>
 </div>
 <p>返回 Comment 的一个副本。</p>
 </section>
 </section>
 <section id="decoder">
-<h2>Decoder 类型<a class="headerlink" href="#decoder" title="Permalink to this heading">¶</a></h2>
+<h2>Decoder 类型<a class="headerlink" href="#decoder" title="Permalink to this headline">¶</a></h2>
 <p>Decoder 用于表示一个读取特定输入流的 XML 语法分析器，
 分析器会假定该输入以 UTF-8 进行编码。</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">Decoder</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// Strict 的默认值为 true ，用于强制执行 XML 规范中的要求。</span>
-<span class="w">    </span><span class="c1">// 如果值被设置为 false ，那么语法分析器将允许输入包含以下常见错误：</span>
-<span class="w">    </span><span class="c1">// * 如果一个元素缺少关闭标签，那么语法分析器将在有需要时自动生成结束标签，</span>
-<span class="w">    </span><span class="c1">//   以便维持 Token 返回的各个值的平衡。</span>
-<span class="w">    </span><span class="c1">// * 在属性值或是字符数据中，未知或格式不正确的字符实体（以 &amp; 开头的序列）将被保留。</span>
-<span class="w">    </span><span class="c1">//</span>
-<span class="w">    </span><span class="c1">// 通过设置：</span>
-<span class="w">    </span><span class="c1">//</span>
-<span class="w">    </span><span class="c1">//  d.Strict = false;</span>
-<span class="w">    </span><span class="c1">//  d.AutoClose = HTMLAutoClose;</span>
-<span class="w">    </span><span class="c1">//  d.Entity = HTMLEntity</span>
-<span class="w">    </span><span class="c1">//</span>
-<span class="w">    </span><span class="c1">// 可以创建一个能够处理典型 HTML 的语法分析器。</span>
-<span class="w">    </span><span class="c1">//</span>
-<span class="w">    </span><span class="c1">// 严格模式并不会强制执行 XML 命名空间 TR 的要求。</span>
-<span class="w">    </span><span class="c1">// 特别地，它将不会拒绝使用未定义前缀的命名空间标签。</span>
-<span class="w">    </span><span class="c1">// 这些标签将会被记录，而它们包含的未知前缀则会被看作是命名空间 URL 。</span>
-<span class="w">    </span><span class="nx">Strict</span><span class="w"> </span><span class="kt">bool</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">Decoder</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Strict 的默认值为 true ，用于强制执行 XML 规范中的要求。</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// 如果值被设置为 false ，那么语法分析器将允许输入包含以下常见错误：</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// * 如果一个元素缺少关闭标签，那么语法分析器将在有需要时自动生成结束标签，</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//   以便维持 Token 返回的各个值的平衡。</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// * 在属性值或是字符数据中，未知或格式不正确的字符实体（以 &amp; 开头的序列）将被保留。</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// 通过设置：</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//  d.Strict = false;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//  d.AutoClose = HTMLAutoClose;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//  d.Entity = HTMLEntity</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// 可以创建一个能够处理典型 HTML 的语法分析器。</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// 严格模式并不会强制执行 XML 命名空间 TR 的要求。</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// 特别地，它将不会拒绝使用未定义前缀的命名空间标签。</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// 这些标签将会被记录，而它们包含的未知前缀则会被看作是命名空间 URL 。</span><span class="w"></span>
+<span class="w">    </span><span class="nx">Strict</span><span class="w"> </span><span class="kt">bool</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">// 当 Strict 的值为 false 时，</span>
-<span class="w">    </span><span class="c1">// AutoClose 将包含一系列无论结束元素是否存在都需要在打开之后立即关闭的元素。</span>
-<span class="w">    </span><span class="nx">AutoClose</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span>
+<span class="w">    </span><span class="c1">// 当 Strict 的值为 false 时，</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// AutoClose 将包含一系列无论结束元素是否存在都需要在打开之后立即关闭的元素。</span><span class="w"></span>
+<span class="w">    </span><span class="nx">AutoClose</span><span class="w"> </span><span class="p">[]</span><span class="kt">string</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">// Entity 可以用于将非标准实体名字映射为相应的字符串替代物。</span>
-<span class="w">    </span><span class="c1">// 无论实际的映射内容是什么，</span>
-<span class="w">    </span><span class="c1">// 语法分析器都会表现得就像以下这些标准映射出现在了 map 里面一样：</span>
-<span class="w">    </span><span class="c1">//</span>
-<span class="w">    </span><span class="c1">//  &quot;lt&quot;: &quot;&lt;&quot;,</span>
-<span class="w">    </span><span class="c1">//  &quot;gt&quot;: &quot;&gt;&quot;,</span>
-<span class="w">    </span><span class="c1">//  &quot;amp&quot;: &quot;&amp;&quot;,</span>
-<span class="w">    </span><span class="c1">//  &quot;apos&quot;: &quot;&#39;&quot;,</span>
-<span class="w">    </span><span class="c1">//  &quot;quot&quot;: `&quot;`,</span>
-<span class="w">    </span><span class="nx">Entity</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span>
+<span class="w">    </span><span class="c1">// Entity 可以用于将非标准实体名字映射为相应的字符串替代物。</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// 无论实际的映射内容是什么，</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// 语法分析器都会表现得就像以下这些标准映射出现在了 map 里面一样：</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//  &quot;lt&quot;: &quot;&lt;&quot;,</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//  &quot;gt&quot;: &quot;&gt;&quot;,</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//  &quot;amp&quot;: &quot;&amp;&quot;,</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//  &quot;apos&quot;: &quot;&#39;&quot;,</span><span class="w"></span>
+<span class="w">    </span><span class="c1">//  &quot;quot&quot;: `&quot;`,</span><span class="w"></span>
+<span class="w">    </span><span class="nx">Entity</span><span class="w"> </span><span class="kd">map</span><span class="p">[</span><span class="kt">string</span><span class="p">]</span><span class="kt">string</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">// 字符集读取器，如果非空，那么将定义一个函数，</span>
-<span class="w">    </span><span class="c1">// 这个函数可以用于生成字符集转换读取器，用于将非 UTF-8 字符集转换为 UTF-8 。</span>
-<span class="w">    </span><span class="c1">// 如果 CharsetReader 为 nil 或者返回一个错误，那么分析过程将停止并返回一个错误。</span>
-<span class="w">    </span><span class="c1">// CharsetReader 的其中一个结果值必须为非 nil 。</span>
-<span class="w">    </span><span class="nx">CharsetReader</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">charset</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">input</span><span class="w"> </span><span class="nx">io</span><span class="p">.</span><span class="nx">Reader</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nx">io</span><span class="p">.</span><span class="nx">Reader</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span>
+<span class="w">    </span><span class="c1">// 字符集读取器，如果非空，那么将定义一个函数，</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// 这个函数可以用于生成字符集转换读取器，用于将非 UTF-8 字符集转换为 UTF-8 。</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// 如果 CharsetReader 为 nil 或者返回一个错误，那么分析过程将停止并返回一个错误。</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// CharsetReader 的其中一个结果值必须为非 nil 。</span><span class="w"></span>
+<span class="w">    </span><span class="nx">CharsetReader</span><span class="w"> </span><span class="kd">func</span><span class="p">(</span><span class="nx">charset</span><span class="w"> </span><span class="kt">string</span><span class="p">,</span><span class="w"> </span><span class="nx">input</span><span class="w"> </span><span class="nx">io</span><span class="p">.</span><span class="nx">Reader</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nx">io</span><span class="p">.</span><span class="nx">Reader</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">// 当整个 XML 流都被包裹在一个包含属性 xmlns=&quot;DefaultSpace&quot; 的元素里面时，</span>
-<span class="w">    </span><span class="c1">// DefaultSpace 将用于设置未经修饰（unadorned）的标签的默认命名空间。</span>
-<span class="w">    </span><span class="nx">DefaultSpace</span><span class="w"> </span><span class="kt">string</span>
+<span class="w">    </span><span class="c1">// 当整个 XML 流都被包裹在一个包含属性 xmlns=&quot;DefaultSpace&quot; 的元素里面时，</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// DefaultSpace 将用于设置未经修饰（unadorned）的标签的默认命名空间。</span><span class="w"></span>
+<span class="w">    </span><span class="nx">DefaultSpace</span><span class="w"> </span><span class="kt">string</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">// contains filtered or unexported fields</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="c1">// contains filtered or unexported fields</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <section id="newdecoder">
-<h3>NewDecoder 函数<a class="headerlink" href="#newdecoder" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">NewDecoder</span><span class="p">(</span><span class="nx">r</span><span class="w"> </span><span class="nx">io</span><span class="p">.</span><span class="nx">Reader</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="nx">Decoder</span>
+<h3>NewDecoder 函数<a class="headerlink" href="#newdecoder" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">NewDecoder</span><span class="p">(</span><span class="nx">r</span><span class="w"> </span><span class="nx">io</span><span class="p">.</span><span class="nx">Reader</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="nx">Decoder</span><span class="w"></span>
 </pre></div>
 </div>
 <p>创建一个新的读取 r 的 XML 语法分析器。
@@ -626,16 +624,16 @@ Address: {Hanga Roa Easter Island}
 那么函数将使用它自有的缓冲机制。</p>
 </section>
 <section id="decoder-decode">
-<h3>(*Decoder) Decode 方法<a class="headerlink" href="#decoder-decode" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">d</span><span class="w"> </span><span class="o">*</span><span class="nx">Decoder</span><span class="p">)</span><span class="w"> </span><span class="nx">Decode</span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="kd">interface</span><span class="p">{})</span><span class="w"> </span><span class="kt">error</span>
+<h3>(*Decoder) Decode 方法<a class="headerlink" href="#decoder-decode" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">d</span><span class="w"> </span><span class="o">*</span><span class="nx">Decoder</span><span class="p">)</span><span class="w"> </span><span class="nx">Decode</span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="kd">interface</span><span class="p">{})</span><span class="w"> </span><span class="kt">error</span><span class="w"></span>
 </pre></div>
 </div>
 <p>执行与 Unmarshal 一样的解码工作，
 唯一的不同在于这个方法会通过读取解码器流来查找起始元素。</p>
 </section>
 <section id="decoder-decodeelement">
-<h3>(*Decoder) DecodeElement 方法<a class="headerlink" href="#decoder-decodeelement" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">d</span><span class="w"> </span><span class="o">*</span><span class="nx">Decoder</span><span class="p">)</span><span class="w"> </span><span class="nx">DecodeElement</span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="o">*</span><span class="nx">StartElement</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span>
+<h3>(*Decoder) DecodeElement 方法<a class="headerlink" href="#decoder-decodeelement" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">d</span><span class="w"> </span><span class="o">*</span><span class="nx">Decoder</span><span class="p">)</span><span class="w"> </span><span class="nx">DecodeElement</span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="o">*</span><span class="nx">StartElement</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"></span>
 </pre></div>
 </div>
 <p>DecodeElement 的作用跟 Unmarshal 类似，
@@ -646,8 +644,8 @@ Address: {Hanga Roa Easter Island}
 这个方法就可以派上用场。</p>
 </section>
 <section id="decoder-inputoffset">
-<h3>(*Decoder) InputOffset 方法<a class="headerlink" href="#decoder-inputoffset" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">d</span><span class="w"> </span><span class="o">*</span><span class="nx">Decoder</span><span class="p">)</span><span class="w"> </span><span class="nx">InputOffset</span><span class="p">()</span><span class="w"> </span><span class="kt">int64</span>
+<h3>(*Decoder) InputOffset 方法<a class="headerlink" href="#decoder-inputoffset" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">d</span><span class="w"> </span><span class="o">*</span><span class="nx">Decoder</span><span class="p">)</span><span class="w"> </span><span class="nx">InputOffset</span><span class="p">()</span><span class="w"> </span><span class="kt">int64</span><span class="w"></span>
 </pre></div>
 </div>
 <p>返回当前解码器位置在输入流中所处的字节偏移量。
@@ -655,8 +653,8 @@ Address: {Hanga Roa Easter Island}
 以及下一个 token 的开头。</p>
 </section>
 <section id="decoder-skip">
-<h3>(*Decoder) Skip 方法<a class="headerlink" href="#decoder-skip" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">d</span><span class="w"> </span><span class="o">*</span><span class="nx">Decoder</span><span class="p">)</span><span class="w"> </span><span class="nx">Skip</span><span class="p">()</span><span class="w"> </span><span class="kt">error</span>
+<h3>(*Decoder) Skip 方法<a class="headerlink" href="#decoder-skip" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">d</span><span class="w"> </span><span class="o">*</span><span class="nx">Decoder</span><span class="p">)</span><span class="w"> </span><span class="nx">Skip</span><span class="p">()</span><span class="w"> </span><span class="kt">error</span><span class="w"></span>
 </pre></div>
 </div>
 <p>跳过被读取的任意多个 token ，
@@ -669,8 +667,8 @@ Address: {Hanga Roa Easter Island}
 它将返回一个用于描述问题的错误。</p>
 </section>
 <section id="decoder-token">
-<h3>(*Decoder) Token 方法<a class="headerlink" href="#decoder-token" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">d</span><span class="w"> </span><span class="o">*</span><span class="nx">Decoder</span><span class="p">)</span><span class="w"> </span><span class="nx">Token</span><span class="p">()</span><span class="w"> </span><span class="p">(</span><span class="nx">Token</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span>
+<h3>(*Decoder) Token 方法<a class="headerlink" href="#decoder-token" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">d</span><span class="w"> </span><span class="o">*</span><span class="nx">Decoder</span><span class="p">)</span><span class="w"> </span><span class="nx">Token</span><span class="p">()</span><span class="w"> </span><span class="p">(</span><span class="nx">Token</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 <p>返回输入流的下一个 XML token 。
@@ -693,8 +691,8 @@ Token 包含的每个 Name 结构的 Space 都会被设置为标志着它的命�
 而不是报告一个错误。</p>
 </section>
 <section id="decoder-rawtoken">
-<h3>(*Decoder) RawToken 方法<a class="headerlink" href="#decoder-rawtoken" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">d</span><span class="w"> </span><span class="o">*</span><span class="nx">Decoder</span><span class="p">)</span><span class="w"> </span><span class="nx">RawToken</span><span class="p">()</span><span class="w"> </span><span class="p">(</span><span class="nx">Token</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span>
+<h3>(*Decoder) RawToken 方法<a class="headerlink" href="#decoder-rawtoken" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">d</span><span class="w"> </span><span class="o">*</span><span class="nx">Decoder</span><span class="p">)</span><span class="w"> </span><span class="nx">RawToken</span><span class="p">()</span><span class="w"> </span><span class="p">(</span><span class="nx">Token</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 <p>RawToken 的作用跟 Token 的作用类似，
@@ -703,90 +701,90 @@ Token 包含的每个 Name 结构的 Space 都会被设置为标志着它的命�
 </section>
 </section>
 <section id="directive">
-<h2>Directive 类型<a class="headerlink" href="#directive" title="Permalink to this heading">¶</a></h2>
+<h2>Directive 类型<a class="headerlink" href="#directive" title="Permalink to this headline">¶</a></h2>
 <p>一个 Directive 表示一个 &lt;!text&gt; 格式的 XML 命令，
 用于包围命令的 &lt;! 标识和 &gt; 标识不会包含在 Directive 之内：</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">Directive</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">Directive</span><span class="w"> </span><span class="p">[]</span><span class="kt">byte</span><span class="w"></span>
 </pre></div>
 </div>
 <section id="directive-copy">
-<h3>(Directive) Copy 方法<a class="headerlink" href="#directive-copy" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">d</span><span class="w"> </span><span class="nx">Directive</span><span class="p">)</span><span class="w"> </span><span class="nx">Copy</span><span class="p">()</span><span class="w"> </span><span class="nx">Directive</span>
+<h3>(Directive) Copy 方法<a class="headerlink" href="#directive-copy" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">d</span><span class="w"> </span><span class="nx">Directive</span><span class="p">)</span><span class="w"> </span><span class="nx">Copy</span><span class="p">()</span><span class="w"> </span><span class="nx">Directive</span><span class="w"></span>
 </pre></div>
 </div>
 <p>创建 Directive 的一个副本。</p>
 </section>
 </section>
 <section id="encoder">
-<h2>Encoder 类型<a class="headerlink" href="#encoder" title="Permalink to this heading">¶</a></h2>
+<h2>Encoder 类型<a class="headerlink" href="#encoder" title="Permalink to this headline">¶</a></h2>
 <p>Encoder 负责把 XML 数据写入至输出流里面：</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">Encoder</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// contains filtered or unexported fields</span>
-<span class="p">}</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">Encoder</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// contains filtered or unexported fields</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>示例：</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kn">package</span><span class="w"> </span><span class="nx">main</span><span class="w"></span>
 
-<span class="kn">import</span><span class="w"> </span><span class="p">(</span>
-<span class="w">	</span><span class="s">&quot;encoding/xml&quot;</span>
-<span class="w">	</span><span class="s">&quot;fmt&quot;</span>
-<span class="w">	</span><span class="s">&quot;os&quot;</span>
-<span class="p">)</span>
+<span class="kn">import</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">	</span><span class="s">&quot;encoding/xml&quot;</span><span class="w"></span>
+<span class="w">	</span><span class="s">&quot;fmt&quot;</span><span class="w"></span>
+<span class="w">	</span><span class="s">&quot;os&quot;</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 
-<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">	</span><span class="kd">type</span><span class="w"> </span><span class="nx">Address</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<span class="w">		</span><span class="nx">City</span><span class="p">,</span><span class="w"> </span><span class="nx">State</span><span class="w"> </span><span class="kt">string</span>
-<span class="w">	</span><span class="p">}</span>
-<span class="w">	</span><span class="kd">type</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<span class="w">		</span><span class="nx">XMLName</span><span class="w">   </span><span class="nx">xml</span><span class="p">.</span><span class="nx">Name</span><span class="w"> </span><span class="s">`xml:&quot;person&quot;`</span>
-<span class="w">		</span><span class="nx">Id</span><span class="w">        </span><span class="kt">int</span><span class="w">      </span><span class="s">`xml:&quot;id,attr&quot;`</span>
-<span class="w">		</span><span class="nx">FirstName</span><span class="w"> </span><span class="kt">string</span><span class="w">   </span><span class="s">`xml:&quot;name&gt;first&quot;`</span>
-<span class="w">		</span><span class="nx">LastName</span><span class="w">  </span><span class="kt">string</span><span class="w">   </span><span class="s">`xml:&quot;name&gt;last&quot;`</span>
-<span class="w">		</span><span class="nx">Age</span><span class="w">       </span><span class="kt">int</span><span class="w">      </span><span class="s">`xml:&quot;age&quot;`</span>
-<span class="w">		</span><span class="nx">Height</span><span class="w">    </span><span class="kt">float32</span><span class="w">  </span><span class="s">`xml:&quot;height,omitempty&quot;`</span>
-<span class="w">		</span><span class="nx">Married</span><span class="w">   </span><span class="kt">bool</span>
-<span class="w">		</span><span class="nx">Address</span>
-<span class="w">		</span><span class="nx">Comment</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="s">`xml:&quot;,comment&quot;`</span>
-<span class="w">	</span><span class="p">}</span>
+<span class="kd">func</span><span class="w"> </span><span class="nx">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">	</span><span class="kd">type</span><span class="w"> </span><span class="nx">Address</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">		</span><span class="nx">City</span><span class="p">,</span><span class="w"> </span><span class="nx">State</span><span class="w"> </span><span class="kt">string</span><span class="w"></span>
+<span class="w">	</span><span class="p">}</span><span class="w"></span>
+<span class="w">	</span><span class="kd">type</span><span class="w"> </span><span class="nx">Person</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">		</span><span class="nx">XMLName</span><span class="w">   </span><span class="nx">xml</span><span class="p">.</span><span class="nx">Name</span><span class="w"> </span><span class="s">`xml:&quot;person&quot;`</span><span class="w"></span>
+<span class="w">		</span><span class="nx">Id</span><span class="w">        </span><span class="kt">int</span><span class="w">      </span><span class="s">`xml:&quot;id,attr&quot;`</span><span class="w"></span>
+<span class="w">		</span><span class="nx">FirstName</span><span class="w"> </span><span class="kt">string</span><span class="w">   </span><span class="s">`xml:&quot;name&gt;first&quot;`</span><span class="w"></span>
+<span class="w">		</span><span class="nx">LastName</span><span class="w">  </span><span class="kt">string</span><span class="w">   </span><span class="s">`xml:&quot;name&gt;last&quot;`</span><span class="w"></span>
+<span class="w">		</span><span class="nx">Age</span><span class="w">       </span><span class="kt">int</span><span class="w">      </span><span class="s">`xml:&quot;age&quot;`</span><span class="w"></span>
+<span class="w">		</span><span class="nx">Height</span><span class="w">    </span><span class="kt">float32</span><span class="w">  </span><span class="s">`xml:&quot;height,omitempty&quot;`</span><span class="w"></span>
+<span class="w">		</span><span class="nx">Married</span><span class="w">   </span><span class="kt">bool</span><span class="w"></span>
+<span class="w">		</span><span class="nx">Address</span><span class="w"></span>
+<span class="w">		</span><span class="nx">Comment</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="s">`xml:&quot;,comment&quot;`</span><span class="w"></span>
+<span class="w">	</span><span class="p">}</span><span class="w"></span>
 
-<span class="w">	</span><span class="nx">v</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">Person</span><span class="p">{</span><span class="nx">Id</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="nx">FirstName</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;John&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">LastName</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Doe&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">Age</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">}</span>
-<span class="w">	</span><span class="nx">v</span><span class="p">.</span><span class="nx">Comment</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot; Need more details. &quot;</span>
-<span class="w">	</span><span class="nx">v</span><span class="p">.</span><span class="nx">Address</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">Address</span><span class="p">{</span><span class="s">&quot;Hanga Roa&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Easter Island&quot;</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">v</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="o">&amp;</span><span class="nx">Person</span><span class="p">{</span><span class="nx">Id</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w"> </span><span class="nx">FirstName</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;John&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">LastName</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Doe&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">Age</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">}</span><span class="w"></span>
+<span class="w">	</span><span class="nx">v</span><span class="p">.</span><span class="nx">Comment</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">&quot; Need more details. &quot;</span><span class="w"></span>
+<span class="w">	</span><span class="nx">v</span><span class="p">.</span><span class="nx">Address</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">Address</span><span class="p">{</span><span class="s">&quot;Hanga Roa&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Easter Island&quot;</span><span class="p">}</span><span class="w"></span>
 
-<span class="w">	</span><span class="nx">enc</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">xml</span><span class="p">.</span><span class="nx">NewEncoder</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdout</span><span class="p">)</span>
-<span class="w">	</span><span class="nx">enc</span><span class="p">.</span><span class="nx">Indent</span><span class="p">(</span><span class="s">&quot;  &quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;    &quot;</span><span class="p">)</span>
-<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">enc</span><span class="p">.</span><span class="nx">Encode</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span>
-<span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;error: %v\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span>
-<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="nx">enc</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">xml</span><span class="p">.</span><span class="nx">NewEncoder</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdout</span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span><span class="nx">enc</span><span class="p">.</span><span class="nx">Indent</span><span class="p">(</span><span class="s">&quot;  &quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;    &quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="nx">enc</span><span class="p">.</span><span class="nx">Encode</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span><span class="w"> </span><span class="nx">err</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">nil</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">		</span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Printf</span><span class="p">(</span><span class="s">&quot;error: %v\n&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">err</span><span class="p">)</span><span class="w"></span>
+<span class="w">	</span><span class="p">}</span><span class="w"></span>
 
-<span class="p">}</span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>示例执行结果：</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nt">&lt;person</span><span class="w"> </span><span class="na">id=</span><span class="s">&quot;13&quot;</span><span class="nt">&gt;</span>
-<span class="w">      </span><span class="nt">&lt;name&gt;</span>
-<span class="w">          </span><span class="nt">&lt;first&gt;</span>John<span class="nt">&lt;/first&gt;</span>
-<span class="w">          </span><span class="nt">&lt;last&gt;</span>Doe<span class="nt">&lt;/last&gt;</span>
-<span class="w">      </span><span class="nt">&lt;/name&gt;</span>
-<span class="w">      </span><span class="nt">&lt;age&gt;</span>42<span class="nt">&lt;/age&gt;</span>
-<span class="w">      </span><span class="nt">&lt;Married&gt;</span>false<span class="nt">&lt;/Married&gt;</span>
-<span class="w">      </span><span class="nt">&lt;City&gt;</span>Hanga<span class="w"> </span>Roa<span class="nt">&lt;/City&gt;</span>
-<span class="w">      </span><span class="nt">&lt;State&gt;</span>Easter<span class="w"> </span>Island<span class="nt">&lt;/State&gt;</span>
-<span class="w">      </span><span class="cm">&lt;!-- Need more details. --&gt;</span>
-<span class="w">  </span><span class="nt">&lt;/person&gt;</span>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>  <span class="nt">&lt;person</span> <span class="na">id=</span><span class="s">&quot;13&quot;</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;name&gt;</span>
+          <span class="nt">&lt;first&gt;</span>John<span class="nt">&lt;/first&gt;</span>
+          <span class="nt">&lt;last&gt;</span>Doe<span class="nt">&lt;/last&gt;</span>
+      <span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;age&gt;</span>42<span class="nt">&lt;/age&gt;</span>
+      <span class="nt">&lt;Married&gt;</span>false<span class="nt">&lt;/Married&gt;</span>
+      <span class="nt">&lt;City&gt;</span>Hanga Roa<span class="nt">&lt;/City&gt;</span>
+      <span class="nt">&lt;State&gt;</span>Easter Island<span class="nt">&lt;/State&gt;</span>
+      <span class="cm">&lt;!-- Need more details. --&gt;</span>
+  <span class="nt">&lt;/person&gt;</span>
 </pre></div>
 </div>
 <section id="newencoder">
-<h3>NewEncoder 函数<a class="headerlink" href="#newencoder" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">NewEncoder</span><span class="p">(</span><span class="nx">w</span><span class="w"> </span><span class="nx">io</span><span class="p">.</span><span class="nx">Writer</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="nx">Encoder</span>
+<h3>NewEncoder 函数<a class="headerlink" href="#newencoder" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">NewEncoder</span><span class="p">(</span><span class="nx">w</span><span class="w"> </span><span class="nx">io</span><span class="p">.</span><span class="nx">Writer</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="nx">Encoder</span><span class="w"></span>
 </pre></div>
 </div>
 <p>返回一个能够对 w 进行写入的编码器。</p>
 </section>
 <section id="encoder-encode">
-<h3>(*Encoder) Encode 方法<a class="headerlink" href="#encoder-encode" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">enc</span><span class="w"> </span><span class="o">*</span><span class="nx">Encoder</span><span class="p">)</span><span class="w"> </span><span class="nx">Encode</span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="kd">interface</span><span class="p">{})</span><span class="w"> </span><span class="kt">error</span>
+<h3>(*Encoder) Encode 方法<a class="headerlink" href="#encoder-encode" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">enc</span><span class="w"> </span><span class="o">*</span><span class="nx">Encoder</span><span class="p">)</span><span class="w"> </span><span class="nx">Encode</span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="kd">interface</span><span class="p">{})</span><span class="w"> </span><span class="kt">error</span><span class="w"></span>
 </pre></div>
 </div>
 <p>将 XML 编码的 v 写入到流里面。</p>
@@ -794,8 +792,8 @@ Token 包含的每个 Name 结构的 Space 都会被设置为标志着它的命�
 <p>Encode 在返回之前会先调用 Flush 。</p>
 </section>
 <section id="encoder-encodeelement">
-<h3>(*Encoder) EncodeElement 方法<a class="headerlink" href="#encoder-encodeelement" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">enc</span><span class="w"> </span><span class="o">*</span><span class="nx">Encoder</span><span class="p">)</span><span class="w"> </span><span class="nx">EncodeElement</span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="nx">StartElement</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span>
+<h3>(*Encoder) EncodeElement 方法<a class="headerlink" href="#encoder-encodeelement" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">enc</span><span class="w"> </span><span class="o">*</span><span class="nx">Encoder</span><span class="p">)</span><span class="w"> </span><span class="nx">EncodeElement</span><span class="p">(</span><span class="nx">v</span><span class="w"> </span><span class="kd">interface</span><span class="p">{},</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="nx">StartElement</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"></span>
 </pre></div>
 </div>
 <p>将 XML 编码的 v 写入到流里面，
@@ -804,8 +802,8 @@ Token 包含的每个 Name 结构的 Space 都会被设置为标志着它的命�
 <p>EncodeElement 在返回之前会先调用 Flush 。</p>
 </section>
 <section id="encoder-encodetoken">
-<h3>(*Encoder) EncodeToken 方法<a class="headerlink" href="#encoder-encodetoken" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">enc</span><span class="w"> </span><span class="o">*</span><span class="nx">Encoder</span><span class="p">)</span><span class="w"> </span><span class="nx">EncodeToken</span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="nx">Token</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span>
+<h3>(*Encoder) EncodeToken 方法<a class="headerlink" href="#encoder-encodetoken" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">enc</span><span class="w"> </span><span class="o">*</span><span class="nx">Encoder</span><span class="p">)</span><span class="w"> </span><span class="nx">EncodeToken</span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="nx">Token</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"></span>
 </pre></div>
 </div>
 <p>将给定的 XML token 写入到流里面。
@@ -823,16 +821,16 @@ Token 包含的每个 Name 结构的 Space 都会被设置为标志着它的命�
 EncodeToken 才会允许对一个 Target 设置为 “xml” 的 Proclnst 进行写入。</p>
 </section>
 <section id="encoder-flush">
-<h3>(*Encoder) Flush 方法<a class="headerlink" href="#encoder-flush" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">enc</span><span class="w"> </span><span class="o">*</span><span class="nx">Encoder</span><span class="p">)</span><span class="w"> </span><span class="nx">Flush</span><span class="p">()</span><span class="w"> </span><span class="kt">error</span>
+<h3>(*Encoder) Flush 方法<a class="headerlink" href="#encoder-flush" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">enc</span><span class="w"> </span><span class="o">*</span><span class="nx">Encoder</span><span class="p">)</span><span class="w"> </span><span class="nx">Flush</span><span class="p">()</span><span class="w"> </span><span class="kt">error</span><span class="w"></span>
 </pre></div>
 </div>
 <p>将所有被缓冲的 XML 冲刷到底层的写入器里面。
 请查看 EncodeToken 的文档以便了解更多细节。</p>
 </section>
 <section id="encoder-indent">
-<h3>(*Encoder) Indent 方法<a class="headerlink" href="#encoder-indent" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">enc</span><span class="w"> </span><span class="o">*</span><span class="nx">Encoder</span><span class="p">)</span><span class="w"> </span><span class="nx">Indent</span><span class="p">(</span><span class="nx">prefix</span><span class="p">,</span><span class="w"> </span><span class="nx">indent</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span>
+<h3>(*Encoder) Indent 方法<a class="headerlink" href="#encoder-indent" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">enc</span><span class="w"> </span><span class="o">*</span><span class="nx">Encoder</span><span class="p">)</span><span class="w"> </span><span class="nx">Indent</span><span class="p">(</span><span class="nx">prefix</span><span class="p">,</span><span class="w"> </span><span class="nx">indent</span><span class="w"> </span><span class="kt">string</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 <p>对生成 XML 的编码器进行设置，
@@ -842,16 +840,16 @@ indent 的具体数量由元素的嵌套深度决定。</p>
 </section>
 </section>
 <section id="endelement">
-<h2>EndElement 类型<a class="headerlink" href="#endelement" title="Permalink to this heading">¶</a></h2>
+<h2>EndElement 类型<a class="headerlink" href="#endelement" title="Permalink to this headline">¶</a></h2>
 <p>一个 EndElement 表示一个 XML 结束元素。</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">EndElement</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<span class="w">            </span><span class="nx">Name</span><span class="w"> </span><span class="nx">Name</span>
-<span class="p">}</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">EndElement</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="nx">Name</span><span class="w"> </span><span class="nx">Name</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="marshaler">
-<h2>Marshaler 类型<a class="headerlink" href="#marshaler" title="Permalink to this heading">¶</a></h2>
+<h2>Marshaler 类型<a class="headerlink" href="#marshaler" title="Permalink to this headline">¶</a></h2>
 <p>Marshaler 接口由那些需要将自己封装成合法的 XML 元素的对象实现。</p>
 <p>MarshalXML 会将它的接收者编码成一个或多个 XML 元素。
 在通常情况下，
@@ -864,112 +862,112 @@ indent 的具体数量由元素的嵌套深度决定。</p>
 另一种常用的策略是以每次一个 token 的方式，
 通过重复调用 e.EncodeToken 来生成 XML 输出。
 被编码的 token 序列必须由零个或任意多个合法的 XML 元素组成。</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">Marshaler</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">MarshalXML</span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="o">*</span><span class="nx">Encoder</span><span class="p">,</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="nx">StartElement</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span>
-<span class="p">}</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">Marshaler</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">MarshalXML</span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="o">*</span><span class="nx">Encoder</span><span class="p">,</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="nx">StartElement</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="marshalerattr">
-<h2>MarshalerAttr 类型<a class="headerlink" href="#marshalerattr" title="Permalink to this heading">¶</a></h2>
+<h2>MarshalerAttr 类型<a class="headerlink" href="#marshalerattr" title="Permalink to this headline">¶</a></h2>
 <p>MarshalerAttr 接口由那些需要将自己封装成合法的 XML 属性的对象实现。</p>
 <p>MarshalXMLAttr 会返回一个 XML 属性，
 并且这个属性将会带有接收者被编码之后的值。</p>
 <p>如果 MarshalXMLAttr 返回空白的属性 Attr{} ，
 那么这个属性将不产生任何输出。
 MarshalXMLAttr 只能用于字段标签中带有 “attr” 选项的结构字段。</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">MarshalerAttr</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">MarshalXMLAttr</span><span class="p">(</span><span class="nx">name</span><span class="w"> </span><span class="nx">Name</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nx">Attr</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span>
-<span class="p">}</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">MarshalerAttr</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">MarshalXMLAttr</span><span class="p">(</span><span class="nx">name</span><span class="w"> </span><span class="nx">Name</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="nx">Attr</span><span class="p">,</span><span class="w"> </span><span class="kt">error</span><span class="p">)</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="name">
-<h2>Name 类型<a class="headerlink" href="#name" title="Permalink to this heading">¶</a></h2>
+<h2>Name 类型<a class="headerlink" href="#name" title="Permalink to this headline">¶</a></h2>
 <p>一个 Name 可以表示一个使用命名空间标识符（Space）进行注解的 XML 名字（Local）。
 在 Decoder.Token 返回的 token 但中，
 Space 标识符将不会使用被分析文档中的简短前缀，
 而是以标准 URL 的方式给出。</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">Name</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">Space</span><span class="p">,</span><span class="w"> </span><span class="nx">Local</span><span class="w"> </span><span class="kt">string</span>
-<span class="p">}</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">Name</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">Space</span><span class="p">,</span><span class="w"> </span><span class="nx">Local</span><span class="w"> </span><span class="kt">string</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="procinst">
-<h2>ProcInst 类型<a class="headerlink" href="#procinst" title="Permalink to this heading">¶</a></h2>
+<h2>ProcInst 类型<a class="headerlink" href="#procinst" title="Permalink to this headline">¶</a></h2>
 <p>一个 ProcInst 可以表示一个格式为 &lt;?目标指令?&gt; 的 XML 处理指令。</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">ProcInst</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">Target</span><span class="w"> </span><span class="kt">string</span>
-<span class="w">    </span><span class="nx">Inst</span><span class="w">   </span><span class="p">[]</span><span class="kt">byte</span>
-<span class="p">}</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">ProcInst</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">Target</span><span class="w"> </span><span class="kt">string</span><span class="w"></span>
+<span class="w">    </span><span class="nx">Inst</span><span class="w">   </span><span class="p">[]</span><span class="kt">byte</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <section id="procinst-copy">
-<h3>(ProcInst) Copy 方法<a class="headerlink" href="#procinst-copy" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">p</span><span class="w"> </span><span class="nx">ProcInst</span><span class="p">)</span><span class="w"> </span><span class="nx">Copy</span><span class="p">()</span><span class="w"> </span><span class="nx">ProcInst</span>
+<h3>(ProcInst) Copy 方法<a class="headerlink" href="#procinst-copy" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">p</span><span class="w"> </span><span class="nx">ProcInst</span><span class="p">)</span><span class="w"> </span><span class="nx">Copy</span><span class="p">()</span><span class="w"> </span><span class="nx">ProcInst</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 </section>
 <section id="startelement">
-<h2>StartElement 类型<a class="headerlink" href="#startelement" title="Permalink to this heading">¶</a></h2>
+<h2>StartElement 类型<a class="headerlink" href="#startelement" title="Permalink to this headline">¶</a></h2>
 <p>一个 StartElement 可以表示一个 XML 起始元素。</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">StartElement</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">Name</span><span class="w"> </span><span class="nx">Name</span>
-<span class="w">    </span><span class="nx">Attr</span><span class="w"> </span><span class="p">[]</span><span class="nx">Attr</span>
-<span class="p">}</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">StartElement</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">Name</span><span class="w"> </span><span class="nx">Name</span><span class="w"></span>
+<span class="w">    </span><span class="nx">Attr</span><span class="w"> </span><span class="p">[]</span><span class="nx">Attr</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <section id="startelement-copy">
-<h3>(StartElement) Copy 方法<a class="headerlink" href="#startelement-copy" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="nx">StartElement</span><span class="p">)</span><span class="w"> </span><span class="nx">Copy</span><span class="p">()</span><span class="w"> </span><span class="nx">StartElement</span>
+<h3>(StartElement) Copy 方法<a class="headerlink" href="#startelement-copy" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="nx">StartElement</span><span class="p">)</span><span class="w"> </span><span class="nx">Copy</span><span class="p">()</span><span class="w"> </span><span class="nx">StartElement</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="startelement-end">
-<h3>(StartElement) End 方法<a class="headerlink" href="#startelement-end" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="nx">StartElement</span><span class="p">)</span><span class="w"> </span><span class="nx">End</span><span class="p">()</span><span class="w"> </span><span class="nx">EndElement</span>
+<h3>(StartElement) End 方法<a class="headerlink" href="#startelement-end" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="nx">StartElement</span><span class="p">)</span><span class="w"> </span><span class="nx">End</span><span class="p">()</span><span class="w"> </span><span class="nx">EndElement</span><span class="w"></span>
 </pre></div>
 </div>
 <p>返回相应的 XML 结束元素。</p>
 </section>
 </section>
 <section id="syntaxerror">
-<h2>SyntaxError 类型<a class="headerlink" href="#syntaxerror" title="Permalink to this heading">¶</a></h2>
+<h2>SyntaxError 类型<a class="headerlink" href="#syntaxerror" title="Permalink to this headline">¶</a></h2>
 <p>一个 SyntaxError 表示一个在 XML 输入流中发现的语法错误。</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">SyntaxError</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">Msg</span><span class="w">  </span><span class="kt">string</span>
-<span class="w">    </span><span class="nx">Line</span><span class="w"> </span><span class="kt">int</span>
-<span class="p">}</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">SyntaxError</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">Msg</span><span class="w">  </span><span class="kt">string</span><span class="w"></span>
+<span class="w">    </span><span class="nx">Line</span><span class="w"> </span><span class="kt">int</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <section id="syntaxerror-error">
-<h3>(*SyntaxError) Error 方法<a class="headerlink" href="#syntaxerror-error" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="o">*</span><span class="nx">SyntaxError</span><span class="p">)</span><span class="w"> </span><span class="nx">Error</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span>
+<h3>(*SyntaxError) Error 方法<a class="headerlink" href="#syntaxerror-error" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="o">*</span><span class="nx">SyntaxError</span><span class="p">)</span><span class="w"> </span><span class="nx">Error</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 </section>
 <section id="tagpatherror">
-<h2>TagPathError 类型<a class="headerlink" href="#tagpatherror" title="Permalink to this heading">¶</a></h2>
+<h2>TagPathError 类型<a class="headerlink" href="#tagpatherror" title="Permalink to this headline">¶</a></h2>
 <p>一个 TagPathError 用于表示一个在解封过程中因为字段标签使用了冲突的路径而引起的错误。</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">TagPathError</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">Struct</span><span class="w">       </span><span class="nx">reflect</span><span class="p">.</span><span class="nx">Type</span>
-<span class="w">    </span><span class="nx">Field1</span><span class="p">,</span><span class="w"> </span><span class="nx">Tag1</span><span class="w"> </span><span class="kt">string</span>
-<span class="w">    </span><span class="nx">Field2</span><span class="p">,</span><span class="w"> </span><span class="nx">Tag2</span><span class="w"> </span><span class="kt">string</span>
-<span class="p">}</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">TagPathError</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">Struct</span><span class="w">       </span><span class="nx">reflect</span><span class="p">.</span><span class="nx">Type</span><span class="w"></span>
+<span class="w">    </span><span class="nx">Field1</span><span class="p">,</span><span class="w"> </span><span class="nx">Tag1</span><span class="w"> </span><span class="kt">string</span><span class="w"></span>
+<span class="w">    </span><span class="nx">Field2</span><span class="p">,</span><span class="w"> </span><span class="nx">Tag2</span><span class="w"> </span><span class="kt">string</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <section id="tagpatherror-error">
-<h3>(*TagPathError) Error 方法<a class="headerlink" href="#tagpatherror-error" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="o">*</span><span class="nx">TagPathError</span><span class="p">)</span><span class="w"> </span><span class="nx">Error</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span>
+<h3>(*TagPathError) Error 方法<a class="headerlink" href="#tagpatherror-error" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="o">*</span><span class="nx">TagPathError</span><span class="p">)</span><span class="w"> </span><span class="nx">Error</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 </section>
 <section id="token">
-<h2>Token 类型<a class="headerlink" href="#token" title="Permalink to this heading">¶</a></h2>
+<h2>Token 类型<a class="headerlink" href="#token" title="Permalink to this headline">¶</a></h2>
 <p>一个 Token 是一个持有以下任一 token 类型的接口：
 StartElement ，
 EndElement ，
@@ -977,32 +975,32 @@ CharData ，
 Comment ，
 ProcInst ，
 Directive 。</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">Token</span><span class="w"> </span><span class="kd">interface</span><span class="p">{}</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">Token</span><span class="w"> </span><span class="kd">interface</span><span class="p">{}</span><span class="w"></span>
 </pre></div>
 </div>
 <section id="copytoken">
-<h3>CopyToken 函数<a class="headerlink" href="#copytoken" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">CopyToken</span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="nx">Token</span><span class="p">)</span><span class="w"> </span><span class="nx">Token</span>
+<h3>CopyToken 函数<a class="headerlink" href="#copytoken" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">CopyToken</span><span class="p">(</span><span class="nx">t</span><span class="w"> </span><span class="nx">Token</span><span class="p">)</span><span class="w"> </span><span class="nx">Token</span><span class="w"></span>
 </pre></div>
 </div>
 <p>返回 Token 的一个副本。</p>
 </section>
 </section>
 <section id="unmarshalerror">
-<h2>UnmarshalError 类型<a class="headerlink" href="#unmarshalerror" title="Permalink to this heading">¶</a></h2>
+<h2>UnmarshalError 类型<a class="headerlink" href="#unmarshalerror" title="Permalink to this headline">¶</a></h2>
 <p>一个 UnmarshalError 表示一个在解封过程中出现的错误。</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">UnmarshalError</span><span class="w"> </span><span class="kt">string</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">UnmarshalError</span><span class="w"> </span><span class="kt">string</span><span class="w"></span>
 </pre></div>
 </div>
 <section id="unmarshalerror-error">
-<h3>(UnmarshalError) Error 方法<a class="headerlink" href="#unmarshalerror-error" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="nx">UnmarshalError</span><span class="p">)</span><span class="w"> </span><span class="nx">Error</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span>
+<h3>(UnmarshalError) Error 方法<a class="headerlink" href="#unmarshalerror-error" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="nx">UnmarshalError</span><span class="p">)</span><span class="w"> </span><span class="nx">Error</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 </section>
 <section id="unmarshaler">
-<h2>Unmarshaler 类型<a class="headerlink" href="#unmarshaler" title="Permalink to this heading">¶</a></h2>
+<h2>Unmarshaler 类型<a class="headerlink" href="#unmarshaler" title="Permalink to this headline">¶</a></h2>
 <p>实现了 Unmarshaler 接口的对象可以对记录了自身描述的 XML 元素进行解封。</p>
 <p>UnmarshalXML 可以对一个带有给定起始元素的 XML 元素进行解码。
 如果 UnmarshalXML 返回一个错误，
@@ -1014,43 +1012,43 @@ UnmarshalXML 必须只处理一个 XML 元素。</p>
 另一种常用的实现策略是以每次一个 token 的方式，
 使用 d.Token 去处理 XML 对象。
 UnmarshalXML 有可能无法使用 d.RawToken 。</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">Unmarshaler</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">UnmarshalXML</span><span class="p">(</span><span class="nx">d</span><span class="w"> </span><span class="o">*</span><span class="nx">Decoder</span><span class="p">,</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="nx">StartElement</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span>
-<span class="p">}</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">Unmarshaler</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">UnmarshalXML</span><span class="p">(</span><span class="nx">d</span><span class="w"> </span><span class="o">*</span><span class="nx">Decoder</span><span class="p">,</span><span class="w"> </span><span class="nx">start</span><span class="w"> </span><span class="nx">StartElement</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="unmarshalerattr">
-<h2>UnmarshalerAttr 类型<a class="headerlink" href="#unmarshalerattr" title="Permalink to this heading">¶</a></h2>
+<h2>UnmarshalerAttr 类型<a class="headerlink" href="#unmarshalerattr" title="Permalink to this headline">¶</a></h2>
 <p>实现了 UnmarshalerAttr 接口的对象可以对记录了自身描述的 XML 属性进行解封。</p>
 <p>UnmarshalXMLAttr 可以对一个 XML 属性进行解码。
 如果 UnmarshalXMLAttr 返回一个错误，
 那么针对 UnmarshalXMLAttr 的外部调用将停止并返回该错误。
 UnmarshalXMLAttr 只能用于字段标签中带有 “attr” 选项的结构字段。</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">UnmarshalerAttr</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">UnmarshalXMLAttr</span><span class="p">(</span><span class="nx">attr</span><span class="w"> </span><span class="nx">Attr</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span>
-<span class="p">}</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">UnmarshalerAttr</span><span class="w"> </span><span class="kd">interface</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">UnmarshalXMLAttr</span><span class="p">(</span><span class="nx">attr</span><span class="w"> </span><span class="nx">Attr</span><span class="p">)</span><span class="w"> </span><span class="kt">error</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="unsupportedtypeerror">
-<h2>UnsupportedTypeError 类型<a class="headerlink" href="#unsupportedtypeerror" title="Permalink to this heading">¶</a></h2>
+<h2>UnsupportedTypeError 类型<a class="headerlink" href="#unsupportedtypeerror" title="Permalink to this headline">¶</a></h2>
 <p>当 Marshal 遇到一种它无法转换为 XML 的类型时，
 就会返回一个 MarshalXMLError 。</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">UnsupportedTypeError</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="nx">Type</span><span class="w"> </span><span class="nx">reflect</span><span class="p">.</span><span class="nx">Type</span>
-<span class="p">}</span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">UnsupportedTypeError</span><span class="w"> </span><span class="kd">struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nx">Type</span><span class="w"> </span><span class="nx">reflect</span><span class="p">.</span><span class="nx">Type</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <section id="unsupportedtypeerror-error">
-<h3>(*UnsupportedTypeError) Error 方法<a class="headerlink" href="#unsupportedtypeerror-error" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="o">*</span><span class="nx">UnsupportedTypeError</span><span class="p">)</span><span class="w"> </span><span class="nx">Error</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span>
+<h3>(*UnsupportedTypeError) Error 方法<a class="headerlink" href="#unsupportedtypeerror-error" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">e</span><span class="w"> </span><span class="o">*</span><span class="nx">UnsupportedTypeError</span><span class="p">)</span><span class="w"> </span><span class="nx">Error</span><span class="p">()</span><span class="w"> </span><span class="kt">string</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 </section>
 <section id="license">
-<h2>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h2>
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
 <p>Portions of this page are reproduced from work created and <a class="reference external" href="https://developers.google.com/terms/site-policies">shared by Google</a> and used according to terms described in the <a class="reference external" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons 3.0 Attribution License</a> .</p>
 </section>
 </section>
@@ -1068,7 +1066,7 @@ UnmarshalXMLAttr 只能用于字段标签中带有 “attr” 选项的结构字
     </p>
     <p>
         &copy; Copyright 2024, 黄健宏.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
     </p>
   </div>
 </footer>

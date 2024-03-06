@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>怎么样写出更好、也更简短的源码分析书 &#8212; huangz.blog</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,9 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2012" href="../2012/index.html" />
@@ -132,7 +130,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="id1">
-<h1>怎么样写出更好、也更简短的源码分析书<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h1>
+<h1>怎么样写出更好、也更简短的源码分析书<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <p>在刚开始撰写《Redis 设计与实现》的时候，
 我的其中一个目标就是希望这本书在足够有用的情况下，
 也能保持短小的边幅。</p>
@@ -146,20 +144,20 @@
 希望这些方法能激发那些同样撰写书籍/文章的人，
 并创作出更多“好看”的书。</p>
 <section id="id2">
-<h2>关注程序本身的抽象和设计，而不是源码细节<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<h2>关注程序本身的抽象和设计，而不是源码细节<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>关注抽象和设计的书籍会比密密麻麻满是代码的书籍要易读、易懂。</p>
 <p>当你描述的是程序的运作机制、抽象和设计，而不是代码时，你会惊讶地发现自己能说的其实非常少。</p>
 <p>另外，因为代码被改变的几率要比设计被改变的几率高得多，所以如果一本书关注的是设计而不是代码，那么这本书所包含的内容的保质期就会更长。</p>
 </section>
 <section id="id3">
-<h2>分离书本和源码，让它们各司其职<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<h2>分离书本和源码，让它们各司其职<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>书本专门以简单的文字、图片、表格、流程图、简短的代码或伪代码来描述高层次抽象。</p>
 <p>而源码则负责底层的编码细节。</p>
 <p>这样书本和源码就不会相互冲突，也不会造成重复。</p>
 <p>如果可能的话，提供一份带注释的源码，它可以给那些有兴趣研究源码的读者以帮助，也可以和书本配合使用，相得益彰。</p>
 </section>
 <section id="id4">
-<h2>文章中应该避免出现大量代码，更不要大量粘贴源码<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<h2>文章中应该避免出现大量代码，更不要大量粘贴源码<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>除了程序的核心数据结构之外，不要在书本中轻易包含程序的源码，而是使用伪代码来描述程序的运作过程。</p>
 <p>只有在源码和伪代码一样简单/简短的时候，才考虑直接贴源码。</p>
 <p>当然了，使用伪代码也有它自己的缺点 —— 伪代码是无法验证是正确还是错误的，所以需要对伪代码多进行检查，确保：</p>
@@ -170,7 +168,7 @@
 </ol>
 </section>
 <section id="id5">
-<h2>不要假设读者的水平<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<h2>不要假设读者的水平<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>如果你在写一本关于数据库的书，那么你会在书中介绍数据结构吗？会介绍算法吗？会介绍设计模式吗？</p>
 <p>实际上，数据结构、算法、设计模式这些知识，在我写《Redis 设计与实现》的时候都有碰到，但我没有自己去介绍这些知识，我也没有假设读者是否已经懂得这些知识，我所做的，就是将这些知识的关键词链接到一些资料上：</p>
 <ul class="simple">
@@ -180,7 +178,7 @@
 <p>如果需要在书中介绍一些主题以外的知识时，用一个链接，将读者带到更权威、也更详细地介绍这些知识的地方（比如维基百科），而不是自己写一些这些知识的简化、也可能出错的版本。</p>
 </section>
 <section id="id6">
-<h2>不要写（太多）文字<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<h2>不要写（太多）文字<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <p>文字可能是传达信息最传统、也最低效的方式之一，多考虑使用图片、表格、列表、流程图等多样化的方式来表示信息，而不要单单依靠文字。</p>
 <p>当你写上一段长长的文字时，考虑能否用</p>
 <ol class="arabic simple">
@@ -194,7 +192,7 @@
 <p>很难单纯地用文字去描述一个内涵丰富、动作多样的对象，请考虑使用图片或者动态图片，甚至是视频来表现它。</p>
 </section>
 <section id="id7">
-<h2>举例子<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<h2>举例子<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <p>有时候对于一个复杂的功能，
 单纯地描述它的作用所能展现的事情是非常有限的，
 而且也不利于读者理解。</p>
@@ -205,7 +203,7 @@
 可以达到事半功倍的效果。</p>
 </section>
 <section id="id8">
-<h2>仔细分割章节，减低读者的负担，帮助他们保持自己的注意力<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
+<h2>仔细分割章节，减低读者的负担，帮助他们保持自己的注意力<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
 <p>当人们在阅读，特别是在网上读书的时候，他们的注意力非常容易被其东西所分散。</p>
 <p>要保持读者的注意力，必须保证每一章和每一节的长度都在合理的范围之内：每个小节只传达一个小的主题，并给读者一个正向的反馈，这样读者会更容易读完，并且信心满满地进入下一小节。</p>
 <p>另一方面，有了良好分割的内容之后，即使读者在阅读的过程中被其他东西打断了，他们要再回到书本上来的成本也会低很多。</p>
@@ -230,7 +228,7 @@
     </p>
     <p>
         &copy; Copyright 2024, 黄健宏.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
     </p>
   </div>
 </footer>

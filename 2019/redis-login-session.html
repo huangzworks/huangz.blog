@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>使用 Redis 实现登录会话 &#8212; huangz.blog</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,9 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -113,7 +111,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="redis">
-<h1>使用 Redis 实现登录会话<a class="headerlink" href="#redis" title="Permalink to this heading">¶</a></h1>
+<h1>使用 Redis 实现登录会话<a class="headerlink" href="#redis" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>本文摘录自即将出版的《Redis使用手册》，
@@ -155,7 +153,7 @@
 <span class="n">SESSION_TOKEN_INCORRECT</span> <span class="o">=</span> <span class="s2">&quot;SESSION_TOKEN_INCORRECT&quot;</span>
 
 <span class="k">def</span> <span class="nf">generate_token</span><span class="p">():</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    生成一个随机的会话令牌。</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">random_string</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">getrandbits</span><span class="p">(</span><span class="mi">256</span><span class="p">))</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
@@ -169,7 +167,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">user_id</span> <span class="o">=</span> <span class="n">user_id</span>
 
     <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="n">DEFAULT_TIMEOUT</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        创建新的登录会话并返回会话令牌，</span>
 <span class="sd">        可选的 timeout 参数用于指定会话的过期时间（以秒为单位）。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -184,7 +182,7 @@
         <span class="k">return</span> <span class="n">user_token</span>
 
     <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_token</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        根据给定的令牌验证用户身份。</span>
 <span class="sd">        这个方法有四个可能的返回值，分别对应四种不同情况：</span>
 <span class="sd">        1. SESSION_NOT_LOGIN —— 用户尚未登录</span>
@@ -213,7 +211,7 @@
             <span class="k">return</span> <span class="n">SESSION_TOKEN_INCORRECT</span>
 
     <span class="k">def</span> <span class="nf">destroy</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        销毁会话。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># 从两个散列里面分别删除用户的会话令牌以及会话的过期时间戳</span>
@@ -285,7 +283,7 @@
     </p>
     <p>
         &copy; Copyright 2024, 黄健宏.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
     </p>
   </div>
 </footer>

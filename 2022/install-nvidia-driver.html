@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>在 Ubuntu 上安装 Nvidia 专有驱动 &#8212; huangz.blog</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,9 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Redis 7.0 RC2 释出报告" href="redis7-rc2.html" />
@@ -128,7 +126,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="ubuntu-nvidia">
-<h1>在 Ubuntu 上安装 Nvidia 专有驱动<a class="headerlink" href="#ubuntu-nvidia" title="Permalink to this heading">¶</a></h1>
+<h1>在 Ubuntu 上安装 Nvidia 专有驱动<a class="headerlink" href="#ubuntu-nvidia" title="Permalink to this headline">¶</a></h1>
 <img alt="../_images/nvidia.png" src="../_images/nvidia.png" />
 <p>昨天正在用的 Ubuntu 20.04
 在休眠之后出现无法唤醒，又或者在唤醒之后出现桌面卡死/卡顿的情况。</p>
@@ -137,7 +135,7 @@
 的显卡用开源驱动不太行，看来这次是真碰上了，为了正常使用只能选择使用闭源的专有驱动了。</p>
 <p>以下展示的是安装专有驱动的具体方法。</p>
 <section id="id1">
-<h2>查看可用驱动<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<h2>查看可用驱动<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>执行以下命令可以查看系统正在使用的显卡以及它当前可用的驱动：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ubuntu-drivers devices
 
@@ -155,7 +153,7 @@ driver   : xserver-xorg-video-nouveau - distro free builtin
 </div>
 </section>
 <section id="id2">
-<h2>安装驱动<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<h2>安装驱动<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>从结果显示 <code class="docutils literal notranslate"><span class="pre">nvidia-driver-510</span></code>
 是当前推荐使用的驱动（recommended），于是执行以下命令安装该驱动：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt install nvidia-driver-510
@@ -179,7 +177,7 @@ driver   : xserver-xorg-video-nouveau - distro free builtin
 </div>
 </section>
 <section id="id3">
-<h2>查看显卡信息<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<h2>查看显卡信息<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>在安装驱动完毕并重新启动电脑之后，可以通过执行以下命令获取显卡信息：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ nvidia-smi
 Wed Mar 16 01:53:42 2022
@@ -228,7 +226,7 @@ Wed Mar 16 01:53:42 2022
     </p>
     <p>
         &copy; Copyright 2024, 黄健宏.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
     </p>
   </div>
 </footer>

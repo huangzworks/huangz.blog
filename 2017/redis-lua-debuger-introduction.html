@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Redis Lua 脚本调试器用法说明 &#8212; huangz.blog</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,9 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="翻译笔记之十二：无标准译法词汇的处理办法" href="notes-about-translation-12.html" />
@@ -135,12 +133,12 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="redis-lua">
-<h1>Redis Lua 脚本调试器用法说明<a class="headerlink" href="#redis-lua" title="Permalink to this heading">¶</a></h1>
+<h1>Redis Lua 脚本调试器用法说明<a class="headerlink" href="#redis-lua" title="Permalink to this headline">¶</a></h1>
 <p>本文是 Redis 官方 Lua 脚本调试器文档的中文翻译，
 原文为：
 <a class="reference external" href="https://redis.io/topics/ldb">https://redis.io/topics/ldb</a></p>
 <section id="id1">
-<h2>概述<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<h2>概述<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>从 Redis 3.2 版本开始，
 Redis 将内置一个完整的 Lua 调试器，
 它的存将会让编写复杂的 Lua 脚本变得容易。</p>
@@ -178,7 +176,7 @@ Redis 服务器将被用作调试服务器，
 </ul>
 </section>
 <section id="id2">
-<h2>使用教程<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<h2>使用教程<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>学习如何使用 Lua 调试器的其中一个简单的方法，
 就是观看以下视频教程：
 <a class="reference external" href="http://www.bilibili.com/video/av9437433/">http://www.bilibili.com/video/av9437433/</a></p>
@@ -281,7 +279,7 @@ redis.breakpoint()   暂停脚本的执行，就像遇到了一个断点一样�
 调试器将不会显示出相关的命令信息。</p>
 </section>
 <section id="id3">
-<h2>调试会话的终止<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<h2>调试会话的终止<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>当脚本自然终止时，
 调试会话将结束，
 <code class="docutils literal notranslate"><span class="pre">redis-cli</span></code> 将返回至正常的非调试状态。
@@ -295,7 +293,7 @@ redis.breakpoint()   暂停脚本的执行，就像遇到了一个断点一样�
 所有子进程调试会话都会被终止。</p>
 </section>
 <section id="id4">
-<h2>调试命令的缩写<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
+<h2>调试命令的缩写<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
 <p>因为调试通常是一个繁重的重复性任务，
 所以每个 Redis 调试命令都以不同的字符为开始，
 用户可以通过键入这些单个字符来代替键入整个命令。</p>
@@ -303,7 +301,7 @@ redis.breakpoint()   暂停脚本的执行，就像遇到了一个断点一样�
 用户可以通过只键入 <code class="docutils literal notranslate"><span class="pre">s</span></code> 来代替键入 <code class="docutils literal notranslate"><span class="pre">step</span></code> 。</p>
 </section>
 <section id="id5">
-<h2>断点<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
+<h2>断点<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
 <p>正如视频教程中所说，
 添加和移除断点是非常容易的。
 用户只要执行命令 <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">1</span> <span class="pre">2</span> <span class="pre">3</span> <span class="pre">4</span></code> 即可以在第 1 、2 、3 、 4 行分别加上断点。
@@ -318,7 +316,7 @@ redis.breakpoint()   暂停脚本的执行，就像遇到了一个断点一样�
 所以调试器将不会在这些行上面停止。</p>
 </section>
 <section id="id6">
-<h2>动态断点<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
+<h2>动态断点<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
 <p>使用 <code class="docutils literal notranslate"><span class="pre">breakpoint</span></code> 命令虽然可以给指定的行添加断点，
 但有时候我们想要在某些情况发生时才停止程序的执行，
 这时，
@@ -332,7 +330,7 @@ redis.breakpoint()   暂停脚本的执行，就像遇到了一个断点一样�
 它可以避免我们为了遇到特定的条件而一直手动地控制脚本的执行进程。</p>
 </section>
 <section id="id7">
-<h2>同步模式<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
+<h2>同步模式<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
 <p>正如之前所说，
 LDB 在默认情况下将使用子进程来创建调试会话，
 并且在调试完成之后，
@@ -358,7 +356,7 @@ LDB 在默认情况下将使用子进程来创建调试会话，
 而 <code class="docutils literal notranslate"><span class="pre">abort</span></code> 则会中途停止脚本并在有需要时启动一个新的调试会话。</p>
 </section>
 <section id="id8">
-<h2>在脚本中进行日志记录<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h2>
+<h2>在脚本中进行日志记录<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">redis.debug()</span></code> 函数是一个非常强力的调试手段，
 它可以在 Lua 脚本内部调用，
 并将日志写入至调试终端：</p>
@@ -379,7 +377,7 @@ LDB 在默认情况下将使用子进程来创建调试会话，
 表格以及嵌套表格将以正确的方式（displayed correctly）进行展示。</p>
 </section>
 <section id="print-eval">
-<h2>使用 print 和 eval 视察程序状态<a class="headerlink" href="#print-eval" title="Permalink to this heading">¶</a></h2>
+<h2>使用 print 和 eval 视察程序状态<a class="headerlink" href="#print-eval" title="Permalink to this headline">¶</a></h2>
 <p>虽然使用 <code class="docutils literal notranslate"><span class="pre">redis.debug()</span></code> 函数可以在 Lua 脚本内部打印指定的值，
 但是在进行单步调试以及在断点中暂停时，
 能够观察局部变量也是非常有用的一项能力。</p>
@@ -399,7 +397,7 @@ LDB 在默认情况下将使用子进程来创建调试会话，
 </div>
 </section>
 <section id="id9">
-<h2>调试客户端<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h2>
+<h2>调试客户端<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
 <p>LDB 使用客户端-服务器模型，
 作为调试服务器的 Redis 服务器使用 <a class="reference external" href="https://redis.io/topics/protocol">RESP</a> 进行通讯，
 而 <code class="docutils literal notranslate"><span class="pre">redis-cli</span></code> 则作为默认的调试客户端。
@@ -453,7 +451,7 @@ LDB 在默认情况下将使用子进程来创建调试会话，
     </p>
     <p>
         &copy; Copyright 2024, 黄健宏.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
     </p>
   </div>
 </footer>

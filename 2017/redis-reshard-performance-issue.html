@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>重分片对 Redis 集群的性能影响分析 &#8212; huangz.blog</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,9 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2016" href="../2016/index.html" />
@@ -130,7 +128,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="redis">
-<h1>重分片对 Redis 集群的性能影响分析<a class="headerlink" href="#redis" title="Permalink to this heading">¶</a></h1>
+<h1>重分片对 Redis 集群的性能影响分析<a class="headerlink" href="#redis" title="Permalink to this headline">¶</a></h1>
 <p>关于 Redis 集群，
 存在着一种非常常见的说法，
 那就是：
@@ -143,7 +141,7 @@
 本文将对 Redis 集群的转向机制进行详细的介绍，
 并说明为什么转向不会给集群的性能带来影响。</p>
 <section id="id1">
-<h2>转向<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<h2>转向<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Redis 集群是通过分片（shard）方式，
 将一个数据库划分为多个部分，
 并将不同部分交给集群中的不同服务器来处理，
@@ -197,11 +195,15 @@
 那么这两个转向是否会对客户端访问 Redis 集群的性能带来影响呢？</p>
 </section>
 <section id="moved">
-<h2>MOVED 转向会影响性能吗？<a class="headerlink" href="#moved" title="Permalink to this heading">¶</a></h2>
+<h2>MOVED 转向会影响性能吗？<a class="headerlink" href="#moved" title="Permalink to this headline">¶</a></h2>
 <p>在一般情况下，
 Redis 集群的客户端都会在内部缓存集群的槽分配情况，
 比如这样：</p>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>槽</p></th>
 <th class="head"><p>负责的节点</p></th>
@@ -238,6 +240,10 @@ Redis 集群的客户端都会在内部缓存集群的槽分配情况，
 客户端就可以通过发送 <a class="reference external" href="https://redis.io/commands/cluster-slots">CLUSTER SLOTS</a> 来获取并更新自己内部缓存的槽分配情况，
 就像这样：</p>
 <table class="docutils align-default">
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>槽</p></th>
 <th class="head"><p>负责的节点</p></th>
@@ -265,7 +271,7 @@ Redis 集群的客户端都会在内部缓存集群的槽分配情况，
 所以这个转向毫无疑问是不会对性能产生影响的。</p>
 </section>
 <section id="ask">
-<h2>ASK 转向会影响性能吗？<a class="headerlink" href="#ask" title="Permalink to this heading">¶</a></h2>
+<h2>ASK 转向会影响性能吗？<a class="headerlink" href="#ask" title="Permalink to this headline">¶</a></h2>
 <p>在集群进行重分片的过程中，
 获取一个键的值可能需要访问两个节点，
 所以在理论上来说，
@@ -321,7 +327,7 @@ ASK 转向真正对集群产生影响的时长只有 7.5 分钟，
 ASK 转向并不会对集群的性能产生影响。</p>
 </section>
 <section id="id2">
-<h2>重分片真正的性能问题所在<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<h2>重分片真正的性能问题所在<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>既然 MOVED 转向和 ASK 转向都不会对性能造成影响，
 那么是否可以在线对集群进行重分片呢？
 答案是不行的。</p>
@@ -363,7 +369,7 @@ ASK 转向并不会对集群的性能产生影响。</p>
 在没有外部客户端访问集群的情况下进行。</p>
 </section>
 <section id="id3">
-<h2>软件从来都不是一个黑箱<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
+<h2>软件从来都不是一个黑箱<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>抽象也许是软件开发中最有用也最重要的一项技术，
 无论是多么复杂的软件，
 我们总可以把它们抽象成一个简单的个体，
@@ -426,7 +432,7 @@ ASK 转向并不会对集群的性能产生影响。</p>
     </p>
     <p>
         &copy; Copyright 2024, 黄健宏.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
     </p>
   </div>
 </footer>

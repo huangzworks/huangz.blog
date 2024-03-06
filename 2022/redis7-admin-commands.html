@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     <title>Redis 7.0 新增管理命令简介 &#8212; huangz.blog</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
@@ -12,9 +12,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Redis 7.0 RC1 释出报告" href="redis7-rc1.html" />
@@ -134,11 +132,11 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="redis-7-0">
-<h1>Redis 7.0 新增管理命令简介<a class="headerlink" href="#redis-7-0" title="Permalink to this heading">¶</a></h1>
+<h1>Redis 7.0 新增管理命令简介<a class="headerlink" href="#redis-7-0" title="Permalink to this headline">¶</a></h1>
 <p>最近推出的 Redis 7.0
 （RC1和RC2）新增/修改了不少命令，其中当然也包括一些管理相关的命令，本文将对这些管理相关的新命令做相应的介绍。</p>
 <section id="command-docs">
-<h2><code class="docutils literal notranslate"><span class="pre">COMMAND</span> <span class="pre">DOCS</span></code> 命令<a class="headerlink" href="#command-docs" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">COMMAND</span> <span class="pre">DOCS</span></code> 命令<a class="headerlink" href="#command-docs" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">COMMAND</span> <span class="pre">DOCS</span> <span class="pre">[command-name</span> <span class="pre">[command-name</span> <span class="pre">...]]</span></code></p>
 <p>这个新增的子命令会以数组方式，返回给定任意多个命令的文档。如果不指定命令，那么返回所有命令的文档。</p>
 <p>以下代码展示了如何获取 <code class="docutils literal notranslate"><span class="pre">INFO</span></code> 命令的文档：</p>
@@ -191,7 +189,7 @@
 <a class="reference external" href="https://redis.io/commands/command-docs">https://redis.io/commands/command-docs</a></p>
 </section>
 <section id="command-list">
-<h2><code class="docutils literal notranslate"><span class="pre">COMMAND</span> <span class="pre">LIST</span></code> 命令<a class="headerlink" href="#command-list" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">COMMAND</span> <span class="pre">LIST</span></code> 命令<a class="headerlink" href="#command-list" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">COMMAND</span> <span class="pre">LIST</span> <span class="pre">[FILTERBY</span> <span class="pre">MODULE</span> <span class="pre">module-name|ACLCAT</span> <span class="pre">category|PATTERN</span> <span class="pre">pattern]</span></code></p>
 <p>跟 <code class="docutils literal notranslate"><span class="pre">COMMAND</span> <span class="pre">DOCS</span></code> 类似，这个子命令是 7.0
 新增的，它可以列出服务器的所有命令。通过给定可选的 <code class="docutils literal notranslate"><span class="pre">FILTERBY</span></code>
@@ -222,7 +220,7 @@
 <a class="reference external" href="https://redis.io/commands/command-list">https://redis.io/commands/command-list</a></p>
 </section>
 <section id="command-info">
-<h2><code class="docutils literal notranslate"><span class="pre">COMMAND</span> <span class="pre">INFO</span></code> 命令<a class="headerlink" href="#command-info" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">COMMAND</span> <span class="pre">INFO</span></code> 命令<a class="headerlink" href="#command-info" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">COMMAND</span> <span class="pre">INFO</span> <span class="pre">[command-name</span> <span class="pre">[command-name</span> <span class="pre">...]]</span></code></p>
 <p>这个也是新增的子命令，它会以数组形式返回给定的任意多个命令的细节信息。如果不给定命令，那么返回所有命令的细节信息。</p>
 <p>以下代码展示了如何获取 <code class="docutils literal notranslate"><span class="pre">INFO</span></code> 命令的细节信息：</p>
@@ -247,7 +245,7 @@
 命令的更多信息可以参考它的文档：<a class="reference external" href="https://redis.io/commands/command-info">https://redis.io/commands/command-info</a></p>
 </section>
 <section id="latency-histogram">
-<h2><code class="docutils literal notranslate"><span class="pre">LATENCY</span> <span class="pre">HISTOGRAM</span></code> 命令<a class="headerlink" href="#latency-histogram" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">LATENCY</span> <span class="pre">HISTOGRAM</span></code> 命令<a class="headerlink" href="#latency-histogram" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">LATENCY</span> <span class="pre">HISTOGRAM</span> <span class="pre">[command</span> <span class="pre">[command</span> <span class="pre">...]]</span></code></p>
 <p>这个 7.0
 新增子命令会以直方图形式报告每个指定命令的累积分布延迟。如果不指定命令那么所有包含延时信息的命令都会被返回。</p>
@@ -302,7 +300,7 @@
 <p>命令的详细信息请参考文档： <a class="reference external" href="https://redis.io/commands/latency-histogra">https://redis.io/commands/latency-histogra</a></p>
 </section>
 <section id="cluster-links">
-<h2><code class="docutils literal notranslate"><span class="pre">CLUSTER</span> <span class="pre">LINKS</span></code> 命令<a class="headerlink" href="#cluster-links" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">CLUSTER</span> <span class="pre">LINKS</span></code> 命令<a class="headerlink" href="#cluster-links" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">CLUSTER</span> <span class="pre">LINKS</span></code></p>
 <p>这个新增的子命令以数组形式，输出每个集群节点的具体信息，其中每个数组元素都是一个映射，映射中包含了每个独立连接的属性以及与之对应的值。</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">CLUSTER</span> <span class="n">LINKS</span>
@@ -335,7 +333,7 @@
 <p>命令的详细信息请参考文档： <a class="reference external" href="https://redis.io/commands/cluster-links">https://redis.io/commands/cluster-links</a></p>
 </section>
 <section id="cluster-addslotsrange-cluster-delslotsrange">
-<h2><code class="docutils literal notranslate"><span class="pre">CLUSTER</span> <span class="pre">ADDSLOTSRANGE</span></code> 和 <code class="docutils literal notranslate"><span class="pre">CLUSTER</span> <span class="pre">DELSLOTSRANGE</span></code> 命令<a class="headerlink" href="#cluster-addslotsrange-cluster-delslotsrange" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">CLUSTER</span> <span class="pre">ADDSLOTSRANGE</span></code> 和 <code class="docutils literal notranslate"><span class="pre">CLUSTER</span> <span class="pre">DELSLOTSRANGE</span></code> 命令<a class="headerlink" href="#cluster-addslotsrange-cluster-delslotsrange" title="Permalink to this headline">¶</a></h2>
 <p>过去只能用 <code class="docutils literal notranslate"><span class="pre">ADDSLOT</span></code> 命令和 <code class="docutils literal notranslate"><span class="pre">DELSLOT</span></code> 命令一个个地添加/删除槽，在
 7.0 新增以下两个子命令之后，现在可以直接添加/删除槽范围了：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CLUSTER</span> <span class="n">ADDSLOTSRANGE</span> <span class="n">start</span><span class="o">-</span><span class="n">slot</span> <span class="n">end</span><span class="o">-</span><span class="n">slot</span> <span class="p">[</span><span class="n">start</span><span class="o">-</span><span class="n">slot</span> <span class="n">end</span><span class="o">-</span><span class="n">slot</span> <span class="o">...</span><span class="p">]</span>
@@ -356,7 +354,7 @@
 和 <a class="reference external" href="https://redis.io/commands/cluster-delslotsrange">https://redis.io/commands/cluster-delslotsrange</a></p>
 </section>
 <section id="client-no-evict">
-<h2><code class="docutils literal notranslate"><span class="pre">CLIENT</span> <span class="pre">NO-EVICT</span></code><a class="headerlink" href="#client-no-evict" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">CLIENT</span> <span class="pre">NO-EVICT</span></code><a class="headerlink" href="#client-no-evict" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CLIENT</span> <span class="n">NO</span><span class="o">-</span><span class="n">EVICT</span> <span class="n">ON</span><span class="o">|</span><span class="n">OFF</span>
 </pre></div>
 </div>
@@ -368,7 +366,7 @@
 <p>命令的详细信息请参考文档：<a class="reference external" href="https://redis.io/commands/client-no-evict">https://redis.io/commands/client-no-evict</a></p>
 </section>
 <section id="acl-dryrun">
-<h2><code class="docutils literal notranslate"><span class="pre">ACL</span> <span class="pre">DRYRUN</span></code><a class="headerlink" href="#acl-dryrun" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">ACL</span> <span class="pre">DRYRUN</span></code><a class="headerlink" href="#acl-dryrun" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ACL</span> <span class="n">DRYRUN</span> <span class="n">username</span> <span class="n">command</span> <span class="p">[</span><span class="n">arg</span> <span class="p">[</span><span class="n">arg</span> <span class="o">...</span><span class="p">]]</span>
 </pre></div>
 </div>
@@ -386,7 +384,7 @@
 <p>命令的详细信息请参考文档： <a class="reference external" href="https://redis.io/commands/acl-dryrun">https://redis.io/commands/acl-dryrun</a></p>
 </section>
 <section id="slowlog-get">
-<h2><code class="docutils literal notranslate"><span class="pre">SLOWLOG</span> <span class="pre">GET</span></code><a class="headerlink" href="#slowlog-get" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">SLOWLOG</span> <span class="pre">GET</span></code><a class="headerlink" href="#slowlog-get" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">SLOWLOG</span> <span class="pre">GET</span> <span class="pre">[count]</span></code></p>
 <p>这个命令之前的版本已经存在，7.0 让这个命令可以通过接受 <code class="docutils literal notranslate"><span class="pre">-1</span></code>
 为参数，以此来获取所有条目。</p>
@@ -430,7 +428,7 @@
     </p>
     <p>
         &copy; Copyright 2024, 黄健宏.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
     </p>
   </div>
 </footer>
