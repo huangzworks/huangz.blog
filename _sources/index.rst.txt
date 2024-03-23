@@ -16,6 +16,7 @@
 .. toctree::
    :maxdepth: 2
 
+   2024/index
    2023/index
    2022/index
    2021/index

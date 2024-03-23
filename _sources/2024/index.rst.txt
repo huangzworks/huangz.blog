@@ -1,0 +1,7 @@
+2024
+===========
+
+.. toctree::
+   :maxdepth: 2
+
+   redis-new-licenses
