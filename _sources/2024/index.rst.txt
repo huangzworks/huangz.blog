@@ -4,5 +4,6 @@
 .. toctree::
    :maxdepth: 2
 
+   post-redis-era
    challenge-me
    redis-new-licenses
