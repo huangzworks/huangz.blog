@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Go 语言的浮点数精确性 &#8212; huangz.blog</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=e9ae6b2d" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+    <script src="../_static/documentation_options.js?v=e343978f"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -112,7 +111,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="go">
-<h1>Go 语言的浮点数精确性<a class="headerlink" href="#go" title="Permalink to this headline">¶</a></h1>
+<h1>Go 语言的浮点数精确性<a class="headerlink" href="#go" title="Link to this heading">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>本文摘录自《Go语言趣学指南》第 6 章，
@@ -125,9 +124,9 @@
 那么自然地，
 对近似值进行计算也将产生一个近似结果，
 例如:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mi">1</span>
 
-<span class="mf">0.33</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.33</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.33</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.99</span><span class="w"></span>
+<span class="mf">0.33</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.33</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.33</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">0.99</span>
 </pre></div>
 </div>
 <p>除了计算机硬件使用只包含 0 和 1 的二进制数而不使用包含 0~9 的十进制数来表示浮点数，
@@ -138,10 +137,10 @@
 就像代码清单 6-5 所示的那样。</p>
 <hr class="docutils" />
 <p>代码清单 6-5 浮点数的不精确例子: float.go</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">third</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">3.0</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">third</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">third</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">third</span><span class="p">)</span><span class="w">    </span><span class="c1">// 打印出“1”</span><span class="w"></span>
-<span class="nx">piggyBank</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mf">0.1</span><span class="w"></span>
-<span class="nx">piggyBank</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">0.2</span><span class="w"></span>
-<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">piggyBank</span><span class="p">)</span><span class="w">    </span><span class="c1">// 打印出“0.30000000000000004”</span><span class="w"></span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">third</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">3.0</span><span class="w"> </span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">third</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">third</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">third</span><span class="p">)</span><span class="w">    </span><span class="c1">// 打印出“1”</span>
+<span class="nx">piggyBank</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mf">0.1</span>
+<span class="nx">piggyBank</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">0.2</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">piggyBank</span><span class="p">)</span><span class="w">    </span><span class="c1">// 打印出“0.30000000000000004”</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -163,16 +162,16 @@
 这种做法通常会得出更为精确的计算结果。</p>
 <hr class="docutils" />
 <p>代码清单 6-6 先执行除法计算: rounding-error.go</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">celsius</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mf">21.0</span><span class="w"></span>
-<span class="nx">fmt</span><span class="p">.</span><span class="nx">Print</span><span class="p">((</span><span class="nx">celsius</span><span class="o">/</span><span class="mf">5.0</span><span class="o">*</span><span class="mf">9.0</span><span class="p">)</span><span class="o">+</span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;o F\n&quot;</span><span class="p">)</span><span class="w">    </span><span class="c1">// 打印出“69.80000000000001°F”</span><span class="w"></span>
-<span class="nx">fmt</span><span class="p">.</span><span class="nx">Print</span><span class="p">((</span><span class="mf">9.0</span><span class="o">/</span><span class="mf">5.0</span><span class="o">*</span><span class="nx">celsius</span><span class="p">)</span><span class="o">+</span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;o F\n&quot;</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">celsius</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mf">21.0</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Print</span><span class="p">((</span><span class="nx">celsius</span><span class="o">/</span><span class="mf">5.0</span><span class="o">*</span><span class="mf">9.0</span><span class="p">)</span><span class="o">+</span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;o F\n&quot;</span><span class="p">)</span><span class="w">    </span><span class="c1">// 打印出“69.80000000000001°F”</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Print</span><span class="p">((</span><span class="mf">9.0</span><span class="o">/</span><span class="mf">5.0</span><span class="o">*</span><span class="nx">celsius</span><span class="p">)</span><span class="o">+</span><span class="mi">32</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;o F\n&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <hr class="docutils" />
 <p>代码清单 6-7 先执行乘法计算: temperature.go</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">celsius</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mf">21.0</span><span class="w"></span>
-<span class="nx">fahrenheit</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">(</span><span class="nx">celsius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">9.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">5.0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">32.0</span><span class="w"></span>
-<span class="nx">fmt</span><span class="p">.</span><span class="nx">Print</span><span class="p">(</span><span class="nx">fahrenheit</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;o F&quot;</span><span class="p">)</span><span class="w">    </span><span class="c1">// 打印出“69.8°F”</span><span class="w"></span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">celsius</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mf">21.0</span>
+<span class="nx">fahrenheit</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="p">(</span><span class="nx">celsius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">9.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">5.0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">32.0</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Print</span><span class="p">(</span><span class="nx">fahrenheit</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;o F&quot;</span><span class="p">)</span><span class="w">    </span><span class="c1">// 打印出“69.8°F”</span>
 </pre></div>
 </div>
 <hr class="docutils" />
@@ -181,9 +180,9 @@
 piggyBank 变量的值是 0.30000000000000004 而不是我们想要的 0.30 。
 在比较浮点数的时候，
 必须小心:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">piggyBank</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mf">0.1</span><span class="w"></span>
-<span class="nx">piggyBank</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">0.2</span><span class="w"></span>
-<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">piggyBank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">0.3</span><span class="p">)</span><span class="w">    </span><span class="c1">// 打印出“false”</span><span class="w"></span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">piggyBank</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="mf">0.1</span>
+<span class="nx">piggyBank</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">0.2</span>
+<span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">piggyBank</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mf">0.3</span><span class="p">)</span><span class="w">    </span><span class="c1">// 打印出“false”</span>
 </pre></div>
 </div>
 <p>为了避免上述问题，
@@ -193,7 +192,7 @@ piggyBank 变量的值是 0.30000000000000004 而不是我们想要的 0.30 。
 然后通过判断这个差的绝对值是否足够小来判断两个浮点数是否相等。
 为此，
 我们可以使用 math 包提供的 Abs 函数来计算 float64 浮点数的绝对值:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">math</span><span class="p">.</span><span class="nx">Abs</span><span class="p">(</span><span class="nx">piggyBank</span><span class="o">-</span><span class="mf">0.3</span><span class="p">)</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="mf">0.0001</span><span class="p">)</span><span class="w">    </span><span class="c1">// 打印出“true”</span><span class="w"></span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">fmt</span><span class="p">.</span><span class="nx">Println</span><span class="p">(</span><span class="nx">math</span><span class="p">.</span><span class="nx">Abs</span><span class="p">(</span><span class="nx">piggyBank</span><span class="o">-</span><span class="mf">0.3</span><span class="p">)</span><span class="w"> </span><span class="p">&lt;</span><span class="w"> </span><span class="mf">0.0001</span><span class="p">)</span><span class="w">    </span><span class="c1">// 打印出“true”</span>
 </pre></div>
 </div>
 </section>
@@ -211,7 +210,7 @@ piggyBank 变量的值是 0.30000000000000004 而不是我们想要的 0.30 。
     </p>
     <p>
         &copy; Copyright 2024, 黄健宏.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
     </p>
   </div>
 </footer>

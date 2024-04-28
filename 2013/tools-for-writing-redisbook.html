@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>编写《Redis 设计与实现》时用到的工具 &#8212; huangz.blog</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=e9ae6b2d" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+    <script src="../_static/documentation_options.js?v=e343978f"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Redis 的 ZUNIONSTORE 命令和 ZINTERSTORE 命令的另一种用法" href="another-usage-of-zunionstore-and-zinterstore.html" />
@@ -130,14 +129,14 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="redis">
-<h1>编写《Redis 设计与实现》时用到的工具<a class="headerlink" href="#redis" title="Permalink to this headline">¶</a></h1>
+<h1>编写《Redis 设计与实现》时用到的工具<a class="headerlink" href="#redis" title="Link to this heading">¶</a></h1>
 <p>在《<a class="reference external" href="http://www.redisbook.com">Redis 设计与实现</a>》（后面简称 《设计与实现》）发布以后，
 除了和 Redis 相关的问题之外，
 读者们问得最多的就是制作这本书使用了什么工具。</p>
 <p>这篇文章将对编写《设计与实现》时用到的所有工具进行介绍，
 并附上一些我个人的使用心得和经验。</p>
 <section id="sphinx">
-<h2>文档生成：Sphinx<a class="headerlink" href="#sphinx" title="Permalink to this headline">¶</a></h2>
+<h2>文档生成：Sphinx<a class="headerlink" href="#sphinx" title="Link to this heading">¶</a></h2>
 <p>《设计与实现》的网页本身是由 <a class="reference external" href="http://sphinx-doc.org/ext/graphviz.html">Sphinx</a> 生成的。</p>
 <img alt="../_images/sphinx-log.png" src="../_images/sphinx-log.png" />
 <p>Sphinx 是一个静态文档生成器，
@@ -174,7 +173,7 @@ rst 格式和 markdown 格式一样，
 变成一个文档编写爱好者。</p>
 </section>
 <section id="git-github-bitbucket">
-<h2>源码的管理和托管：Git 、 GitHub 以及 Bitbucket<a class="headerlink" href="#git-github-bitbucket" title="Permalink to this headline">¶</a></h2>
+<h2>源码的管理和托管：Git 、 GitHub 以及 Bitbucket<a class="headerlink" href="#git-github-bitbucket" title="Link to this heading">¶</a></h2>
 <p>有了书本原稿之后，
 如何妥善地保管这些原稿就成了一个非常重要的问题的 ——
 幸运的是，
@@ -212,7 +211,7 @@ rst 格式和 markdown 格式一样，
 请他们为你未发布的文档提供意见。</p>
 </section>
 <section id="graphviz">
-<h2>图片生成：Graphviz<a class="headerlink" href="#graphviz" title="Permalink to this headline">¶</a></h2>
+<h2>图片生成：Graphviz<a class="headerlink" href="#graphviz" title="Link to this heading">¶</a></h2>
 <p>《设计与实现》的图片都是由 <a class="reference external" href="http://graphviz.org/">Graphviz</a> 生成的。</p>
 <img alt="../_images/graphviz-logo.png" src="../_images/graphviz-logo.png" />
 <p>Graphviz 是一个开源的图片可视化工具，
@@ -263,7 +262,7 @@ Graphviz 提供了大量的功能和参数，
 能用 Graphviz 创建出更多更好看的图片。</p>
 </section>
 <section id="id12">
-<h2>其他工具<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<h2>其他工具<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h2>
 <p>《设计与实现》是通过阅读并提取 Redis 源码中的设计思想来创作的，
 我使用 VIM 阅读和注释源码。
 （至于我是如何阅读 Redis 源码的，可以参考 <a class="reference external" href="http://www.infoq.com/cn/news/2013/03/redis-book">InfoQ 上对《Redis 设计与实现》的报道</a> ，我在里面有说到。）</p>
@@ -286,7 +285,7 @@ Graphviz 提供了大量的功能和参数，
 得赶紧去买才行。</p>
 </section>
 <section id="sphinx-readthedocs">
-<h2>Sphinx 项目托管： ReadTheDocs<a class="headerlink" href="#sphinx-readthedocs" title="Permalink to this headline">¶</a></h2>
+<h2>Sphinx 项目托管： ReadTheDocs<a class="headerlink" href="#sphinx-readthedocs" title="Link to this heading">¶</a></h2>
 <p>当书本完成之后，
 我们需要将 Sphinx 生成的文档发布出去，
 才能让书本让更多人看到。</p>
@@ -320,7 +319,7 @@ ReadTheDocs 也直接支持 <a class="reference external" href="https://www.goog
 ReadTheDocs 应该是你的不二之选。</p>
 </section>
 <section id="id13">
-<h2>结尾<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<h2>结尾<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h2>
 <p>好的，以上介绍的就是编写《Redis 实现与设计》时用到的所有工具了。</p>
 <p>关于工具的选择和使用上几乎每个人都有不同的想法，
 如果不是这样的话，
@@ -354,7 +353,7 @@ ReadTheDocs 应该是你的不二之选。</p>
     </p>
     <p>
         &copy; Copyright 2024, 黄健宏.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
     </p>
   </div>
 </footer>

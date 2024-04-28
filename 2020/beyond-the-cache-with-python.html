@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>使用 Python 配合 Redis 超越缓存 &#8212; huangz.blog</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=e9ae6b2d" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+    <script src="../_static/documentation_options.js?v=e343978f"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Salvatore Sanfilippo ：Redis 冒险的终点" href="the-end-of-the-redis-adventure.html" />
@@ -130,7 +129,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="python-redis">
-<h1>使用 Python 配合 Redis 超越缓存<a class="headerlink" href="#python-redis" title="Permalink to this headline">¶</a></h1>
+<h1>使用 Python 配合 Redis 超越缓存<a class="headerlink" href="#python-redis" title="Link to this heading">¶</a></h1>
 <img alt="../_images/python-code.jpg" src="../_images/python-code.jpg" />
 <div class="line-block">
 <div class="line"><br /></div>
@@ -157,7 +156,7 @@ Redis 的确是一个很棒的缓存，
 那么可以去看看<a class="reference external" href="https://redislabs.com/blog/async-await-programming-basics-python-examples/">这篇文章</a>，
 里面提到了 <code class="docutils literal notranslate"><span class="pre">async/await</span></code> 对提升性能的帮助。</p>
 <section id="id2">
-<h2>使用 Redis 构建队列<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>使用 Redis 构建队列<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <p>Redis 提供了字符串、哈希、集合和列表等多种数据结构可供使用。
 这些数据结构都是储存数据的好帮手，
 其中列表就可以用作一个非常棒的队列（queue）。</p>
@@ -226,7 +225,7 @@ Redis 的确是一个很棒的缓存，
 这是非常棒的一个命令。</p>
 </section>
 <section id="id4">
-<h2>使用 Redis 订阅和发送事件<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>使用 Redis 订阅和发送事件<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
 <p>Redis 提供的东西中有些并不是数据结构，
 比如订阅与发布（Pub/Sub）特性就是其中之一。
 这个特性就像它的名字一样，
@@ -296,7 +295,7 @@ Redis 的确是一个很棒的缓存，
 又或者接下来将要介绍的 Redis 流。</p>
 </section>
 <section id="id6">
-<h2>使用 Redis 储存数据流<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<h2>使用 Redis 储存数据流<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
 <p>除了发布与订阅之外，
 Redis 还可以使用流来发布和订阅事件。
 <a class="reference external" href="https://redis.io/topics/streams-intro">Redis 流</a>是一个非常大的话题，
@@ -374,7 +373,7 @@ Redis 还可以使用流来发布和订阅事件。
 以便将来调用 <code class="docutils literal notranslate"><span class="pre">redis.xread</span></code> 时可以获得新的事件并在有需要时重新读取之前读取过的旧事件。</p>
 </section>
 <section id="id9">
-<h2>将 Redis 用作搜索引擎<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<h2>将 Redis 用作搜索引擎<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h2>
 <p>Redis 可以通过模块（Module）扩展来增加新的命令和功能。
 有<a class="reference external" href="https://redis.io/modules">大量的模块</a>可以用于 AI 模型服务、图形数据库、时间序列数据库以及本例中的搜索引擎。</p>
 <p><a class="reference external" href="https://oss.redislabs.com/redisearch/">RedisSearch</a> 是一个强大的搜索引擎，
@@ -437,7 +436,7 @@ Redis 还可以使用流来发布和订阅事件。
 该查询将返回两个文档。</p>
 </section>
 <section id="id12">
-<h2>使用 Redis 作为主数据库<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<h2>使用 Redis 作为主数据库<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h2>
 <p>Redis 可以作为一个速度奇快的内存存储数据库来使用。
 下面的代码使用了哈希来演示这种用法。
 哈希是一种非常棒的数据结构，
@@ -488,7 +487,7 @@ No，不会的！
 使得你可以直接使用 Redis 而不必担心持久化的问题。</p>
 </section>
 <section id="id15">
-<h2>亲手尝试一下<a class="headerlink" href="#id15" title="Permalink to this headline">¶</a></h2>
+<h2>亲手尝试一下<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h2>
 <p>为了方便你亲手尝试这些例子，
 我把文中涉及的<a class="reference external" href="https://github.com/guyroyse/python-redis-examples">所有代码都放到了 GitHub 上面</a>，
 你可以克隆并开始使用它们。
@@ -521,7 +520,7 @@ No，不会的！
     </p>
     <p>
         &copy; Copyright 2024, 黄健宏.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
     </p>
   </div>
 </footer>

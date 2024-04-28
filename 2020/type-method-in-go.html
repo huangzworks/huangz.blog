@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>在 Go 语言中通过方法为类型添加行为 &#8212; huangz.blog</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=e9ae6b2d" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+    <script src="../_static/documentation_options.js?v=e343978f"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -112,7 +111,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="go">
-<h1>在 Go 语言中通过方法为类型添加行为<a class="headerlink" href="#go" title="Permalink to this headline">¶</a></h1>
+<h1>在 Go 语言中通过方法为类型添加行为<a class="headerlink" href="#go" title="Link to this heading">¶</a></h1>
 <blockquote>
 <div><p>他的胡言乱语竟有方法自圆其说。 —— 莎士比亚，《哈姆雷特》</p>
 </div></blockquote>
@@ -133,7 +132,7 @@
 但是不能为 <code class="docutils literal notranslate"><span class="pre">int</span></code> 和 <code class="docutils literal notranslate"><span class="pre">float64</span></code> 之类的预声明类型关联方法。
 其中，
 声明类型的方法在前面已经介绍过了:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">kelvin</span><span class="w"> </span><span class="kt">float64</span><span class="w"></span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">kelvin</span><span class="w"> </span><span class="kt">float64</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">kelvin</span></code> 类型跟它的底层类型 <code class="docutils literal notranslate"><span class="pre">float64</span></code> 具有相同的行为，
@@ -142,12 +141,12 @@
 此外，
 声明一个将 <code class="docutils literal notranslate"><span class="pre">kelvin</span></code> 转换为 <code class="docutils literal notranslate"><span class="pre">celsius</span></code> 的方法就跟声明一个具有同等作用的函数一样简单——它们都以关键字 <code class="docutils literal notranslate"><span class="pre">func</span></code> 开头，
 并且函数体跟方法体完全一样:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">kelvinToCelsius</span><span class="p">(</span><span class="nx">k</span><span class="w"> </span><span class="nx">kelvin</span><span class="p">)</span><span class="w"> </span><span class="nx">celsius</span><span class="w"> </span><span class="p">{</span><span class="w">    </span><span class="c1">// kelvinToCelsius 函数</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">celsius</span><span class="p">(</span><span class="nx">k</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">273.15</span><span class="p">)</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">k</span><span class="w"> </span><span class="nx">kelvin</span><span class="p">)</span><span class="w"> </span><span class="nx">celsius</span><span class="p">()</span><span class="w"> </span><span class="nx">celsius</span><span class="w"> </span><span class="p">{</span><span class="w">    </span><span class="c1">// kelvin 类型的 celsius 方法</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">celsius</span><span class="p">(</span><span class="nx">k</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">273.15</span><span class="p">)</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">func</span><span class="w"> </span><span class="nx">kelvinToCelsius</span><span class="p">(</span><span class="nx">k</span><span class="w"> </span><span class="nx">kelvin</span><span class="p">)</span><span class="w"> </span><span class="nx">celsius</span><span class="w"> </span><span class="p">{</span><span class="w">    </span><span class="c1">// kelvinToCelsius 函数</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">celsius</span><span class="p">(</span><span class="nx">k</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">273.15</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">k</span><span class="w"> </span><span class="nx">kelvin</span><span class="p">)</span><span class="w"> </span><span class="nx">celsius</span><span class="p">()</span><span class="w"> </span><span class="nx">celsius</span><span class="w"> </span><span class="p">{</span><span class="w">    </span><span class="c1">// kelvin 类型的 celsius 方法</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">celsius</span><span class="p">(</span><span class="nx">k</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">273.15</span><span class="p">)</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>如图 13-1 所示，
@@ -161,17 +160,17 @@
 <figure class="align-default" id="id1">
 <img alt="../_images/13-1.png" src="../_images/13-1.png" />
 <figcaption>
-<p><span class="caption-text">图 13-1 方法声明</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">图 13-1 方法声明</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <hr class="docutils" />
 <p>除声明语法有些许不同之外，
 调用方法的语法与调用函数的语法也不一样:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">k</span><span class="w"> </span><span class="nx">kelvin</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">294.0</span><span class="w"></span>
-<span class="kd">var</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="nx">celsius</span><span class="w"></span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nx">k</span><span class="w"> </span><span class="nx">kelvin</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="mf">294.0</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="nx">celsius</span>
 
-<span class="nx">c</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">kelvinToCelsius</span><span class="p">(</span><span class="nx">k</span><span class="p">)</span><span class="w">     </span><span class="c1">// 调用 kelvinToCelsius 函数</span><span class="w"></span>
-<span class="nx">c</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">k</span><span class="p">.</span><span class="nx">celsius</span><span class="p">()</span><span class="w">    </span><span class="c1">// 调用celsius方法</span><span class="w"></span>
+<span class="nx">c</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">kelvinToCelsius</span><span class="p">(</span><span class="nx">k</span><span class="p">)</span><span class="w">     </span><span class="c1">// 调用 kelvinToCelsius 函数</span>
+<span class="nx">c</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">k</span><span class="p">.</span><span class="nx">celsius</span><span class="p">()</span><span class="w">    </span><span class="c1">// 调用celsius方法</span>
 </pre></div>
 </div>
 <p>跟调用其他包中的函数一样，
@@ -192,10 +191,10 @@
 如果我们使用的是方法，
 那么每种温度类型都可以具有自己的 <code class="docutils literal notranslate"><span class="pre">celsius</span></code> 方法，
 就像以下展示的 <code class="docutils literal notranslate"><span class="pre">fahrenheit</span></code> 类型一样:</p>
-<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">fahrenheit</span><span class="w"> </span><span class="kt">float64</span><span class="w"></span>
-<span class="c1">// celsius方法会将华氏度转换为摄氏度</span><span class="w"></span>
-<span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">f</span><span class="w"> </span><span class="nx">fahrenheit</span><span class="p">)</span><span class="w"> </span><span class="nx">celsius</span><span class="p">()</span><span class="w"> </span><span class="nx">celsius</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="k">return</span><span class="w"> </span><span class="nx">celsius</span><span class="p">((</span><span class="nx">f</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">32.0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">5.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">9.0</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="kd">type</span><span class="w"> </span><span class="nx">fahrenheit</span><span class="w"> </span><span class="kt">float64</span>
+<span class="c1">// celsius方法会将华氏度转换为摄氏度</span>
+<span class="kd">func</span><span class="w"> </span><span class="p">(</span><span class="nx">f</span><span class="w"> </span><span class="nx">fahrenheit</span><span class="p">)</span><span class="w"> </span><span class="nx">celsius</span><span class="p">()</span><span class="w"> </span><span class="nx">celsius</span><span class="w"> </span><span class="p">{</span>
+<span class="k">return</span><span class="w"> </span><span class="nx">celsius</span><span class="p">((</span><span class="nx">f</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">32.0</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">5.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">9.0</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
 </pre></div>
 </div>
 <p>通过让每种温度类型都具有相应的 <code class="docutils literal notranslate"><span class="pre">celsius</span></code> 方法以转换为摄氏温度，
@@ -221,7 +220,7 @@
     </p>
     <p>
         &copy; Copyright 2024, 黄健宏.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
     </p>
   </div>
 </footer>

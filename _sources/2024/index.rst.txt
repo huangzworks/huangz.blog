@@ -4,6 +4,7 @@
 .. toctree::
    :maxdepth: 2
 
+   valkey-ga-release
    valkey
    post-redis-era
    challenge-me

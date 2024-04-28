@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>使用 RedisRaft 构建强一致的 Redis 集群 &#8212; huangz.blog</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=e9ae6b2d" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+    <script src="../_static/documentation_options.js?v=e343978f"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2020 年中设备升级之三：“离经叛道”的 HHKB" href="hhkb.html" />
@@ -129,7 +128,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="redisraft-redis">
-<h1>使用 RedisRaft 构建强一致的 Redis 集群<a class="headerlink" href="#redisraft-redis" title="Permalink to this headline">¶</a></h1>
+<h1>使用 RedisRaft 构建强一致的 Redis 集群<a class="headerlink" href="#redisraft-redis" title="Link to this heading">¶</a></h1>
 <img alt="../_images/redisraft.jpg" src="../_images/redisraft.jpg" />
 <p><strong>本文由黄健宏翻译自</strong>
 <a class="reference external" href="https://redislabs.com/blog/redisraft-new-strong-consistency-deployment-option/">RedisLabs.com/blog</a>
@@ -142,7 +141,7 @@
 <p>RedisRaft 为 Redis 和 Redis 生态系统带来了新的<a class="reference external" href="https://jepsen.io/consistency/models/strict-serializable#:~:text=Informally%2C%20strict%20serializability%20(a.k.a.%20PL,B%20in%20the%20serialization%20order">强一致性与严格的序列化</a>部署方案。
 新模块使 Redis 与 Redis 现有的客户端、库和数据类型一起在需要高可靠性和一致性的超越缓存（beyond-cache）的场景中使用成为可能。</p>
 <section id="id2">
-<h2>RedisRaft 的由来<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>RedisRaft 的由来<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <p>RedisRaft 始于 Redis 5 发布之前的一个实验性的“副项目”。
 至于 Redis 模块这一特性则从 Redis 4 开始引入，
 它可以通过模块的方式实现新的数据类型和命令。
@@ -166,7 +165,7 @@
 </ul>
 </section>
 <section id="id3">
-<h2>RedisRaft 的工作原理<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>RedisRaft 的工作原理<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
 <p>一旦 RedisRaft 模块被加载到 Redis 中，
 它就会接管集群节点之间的通信、Raft 日志或快照的复制、持久化等工作。
 Redis 核心不会察觉到这一点，
@@ -195,7 +194,7 @@ Redis 核心不会察觉到这一点，
 </div>
 </section>
 <section id="id4">
-<h2>访问集群<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>访问集群<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
 <p>在设置好 RedisRaft 集群之后，
 我们就可以向它写入数据：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">10.0.0.1</span><span class="p">:</span><span class="mi">6379</span><span class="o">&gt;</span> <span class="n">INCR</span> <span class="n">counter</span><span class="p">:</span><span class="mi">1</span>
@@ -238,7 +237,7 @@ RedisRaft 也可以被配置为自动为我们处理这个问题。
 所以对延迟和网络负载都会有影响。</p>
 </section>
 <section id="id5">
-<h2>改变集群<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h2>改变集群<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
 <p>在设置集群时，
 我们实际上进行了三种不同的操作。</p>
 <ul class="simple">
@@ -273,7 +272,7 @@ last_conn_secs=3537，conn_errors=0，conn_oks=1。
 </div>
 </section>
 <section id="id6">
-<h2>RedisRaft 的发布状态<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<h2>RedisRaft 的发布状态<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
 <p>作为 RedisRaft 开发工作的一部分，
 我们一直在与 Kyle Kingsbury（又名<a class="reference external" href="https://aphyr.com/about">Aphyr</a>） 合作，
 使用<a class="reference external" href="https://jepsen.io/">Jepsen</a>（一个测试分布式系统安全性和正确性的著名框架）分析和测试 RedisRaft 。
@@ -310,7 +309,7 @@ last_conn_secs=3537，conn_errors=0，conn_oks=1。
     </p>
     <p>
         &copy; Copyright 2024, 黄健宏.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
     </p>
   </div>
 </footer>

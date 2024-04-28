@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Redis 2.6 脚本功能(scripting)简介 &#8212; huangz.blog</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=e9ae6b2d" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+    <script src="../_static/documentation_options.js?v=e343978f"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Redis 命令参考 2.6 版本发布" href="redis-command-reference-26.html" />
@@ -132,13 +131,13 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="redis-2-6-scripting">
-<h1>Redis 2.6 脚本功能(scripting)简介<a class="headerlink" href="#redis-2-6-scripting" title="Permalink to this headline">¶</a></h1>
+<h1>Redis 2.6 脚本功能(scripting)简介<a class="headerlink" href="#redis-2-6-scripting" title="Link to this heading">¶</a></h1>
 <section id="id1">
-<h2>导读<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>导读<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
 <p>对 Lua 脚本的支持无疑是 Redis 2.6 版本的最大亮点，本文通过一个 <code class="docutils literal notranslate"><span class="pre">LPOPRPUSH</span></code> 操作为例子，介绍如何使用 <code class="docutils literal notranslate"><span class="pre">EVAL</span></code> 命令对 Lua 脚本进行求值，以及如何在 Lua 脚本中执行 Redis 命令，并说明这些新特性又是怎样漂亮地解决一些 Redis 在 2.6 版本前很难解决的问题的。</p>
 </section>
 <section id="lpoprpush">
-<h2>LPOPRPUSH<a class="headerlink" href="#lpoprpush" title="Permalink to this headline">¶</a></h2>
+<h2>LPOPRPUSH<a class="headerlink" href="#lpoprpush" title="Link to this heading">¶</a></h2>
 <p>Redis 的 <code class="docutils literal notranslate"><span class="pre">RPOPLPUSH</span></code> 命令有一个特点：它是 Redis 列表结构的众多命令里，唯一一个左右不对称的命令 —— 在 Redis 里，只有 <code class="docutils literal notranslate"><span class="pre">RPOPLPUSH</span></code> ，却没有 <code class="docutils literal notranslate"><span class="pre">LPOPRPUSH</span></code> ，而其他列表结构的命令，比如 <code class="docutils literal notranslate"><span class="pre">LPUSH</span></code> 和 <code class="docutils literal notranslate"><span class="pre">RPUSH</span></code> 、 <code class="docutils literal notranslate"><span class="pre">LPUSHX</span></code> 和 <code class="docutils literal notranslate"><span class="pre">RPUSHX</span></code> ，全都是左右对称的。</p>
 <p>如果仅仅将 Redis 的列表结构用作单向列表，只在列表的其中一边对元素进行处理的话，那么有没有 <code class="docutils literal notranslate"><span class="pre">LPOPRPUSH</span></code> 是无所谓的：因为你总可以将新元素添加到列表的最左边，然后用 <code class="docutils literal notranslate"><span class="pre">RPOPLPUSH</span></code> 来对列表进行处理 —— 常见的消息队列和事件处理在 Redis 中通常都是这样实现的。</p>
 <p>但是，缺少 <code class="docutils literal notranslate"><span class="pre">LPOPRPUSH</span></code> 在一些情况下也会造成不便，其中一个例子就是，没有 <code class="docutils literal notranslate"><span class="pre">LPOPRPUSH</span></code> ，你就没办法用很自然的方法实现循环列表，这种列表既可以向后旋转(<code class="docutils literal notranslate"><span class="pre">LPOPRPUSH</span> <span class="pre">list</span> <span class="pre">list</span></code> ，并返回当前列表的尾节点)，也可以向前旋转(<code class="docutils literal notranslate"><span class="pre">RPOPLPUSH</span> <span class="pre">list</span> <span class="pre">list</span></code> ，并返回列表的头节点)，以下是一个虚构的 <code class="docutils literal notranslate"><span class="pre">LPOPRPUSH</span></code> 例子：</p>
@@ -178,7 +177,7 @@
 </div>
 </section>
 <section id="id2">
-<h2>LPOPRPUSH 的简单实现<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>LPOPRPUSH 的简单实现<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <p>既然已经将 <code class="docutils literal notranslate"><span class="pre">LPOPRPUSH</span></code> 的前世今生都了解了一遍，现在，是时候亲自实现这个命令了。</p>
 <p>可以确定的是， <code class="docutils literal notranslate"><span class="pre">LPOPRPUSH</span></code> 的调用方式应该和 <code class="docutils literal notranslate"><span class="pre">RPOPLPUSH</span></code> 一样，但是弹出元素和添加元素的位置正好相反，也就是说，执行命令 <code class="docutils literal notranslate"><span class="pre">LPOPRPUSH</span> <span class="pre">source</span> <span class="pre">destination</span></code> ，它应该原子性地完成以下三个操作：</p>
 <ol class="arabic simple">
@@ -204,7 +203,7 @@
 </div>
 </section>
 <section id="multi-exec-watch-lpoprpush">
-<h2>使用 MULTI 、 EXEC 和 WATCH 实现安全的 LPOPRPUSH 函数<a class="headerlink" href="#multi-exec-watch-lpoprpush" title="Permalink to this headline">¶</a></h2>
+<h2>使用 MULTI 、 EXEC 和 WATCH 实现安全的 LPOPRPUSH 函数<a class="headerlink" href="#multi-exec-watch-lpoprpush" title="Link to this heading">¶</a></h2>
 <p>上一节的 <code class="docutils literal notranslate"><span class="pre">LPOPRPUSH</span></code> 实现在通常情况下可以达到我们想要的效果，但是它并不是一个原子性操作，没有提供安全性方面的保证。</p>
 <p>举个例子，假如客户端在执行 <code class="docutils literal notranslate"><span class="pre">client:lpop(source)</span></code> 之后失败，那么被弹出的 <code class="docutils literal notranslate"><span class="pre">item</span></code> 元素就会白白丢失，无法被 <code class="docutils literal notranslate"><span class="pre">RPUSH</span></code> 命令推入到 <code class="docutils literal notranslate"><span class="pre">destination</span></code> 列表。</p>
 <p>为了将 <code class="docutils literal notranslate"><span class="pre">LPOPRPUSH</span></code> 函数修改成一个原子性操作，我们不仅需要 <code class="docutils literal notranslate"><span class="pre">MULTI</span></code> 和 <code class="docutils literal notranslate"><span class="pre">EXEC</span></code> ，而且因为 <code class="docutils literal notranslate"><span class="pre">LPOPRPUSH</span></code> 是一个 CAS (check-and-set, 检查并修改)类型的操作，我们还需要用上 <code class="docutils literal notranslate"><span class="pre">WATCH</span></code> 来监视 <code class="docutils literal notranslate"><span class="pre">source</span></code> 和 <code class="docutils literal notranslate"><span class="pre">destination</span></code> 列表。</p>
@@ -237,7 +236,7 @@
 </div>
 </section>
 <section id="redis-2-6">
-<h2>Redis 在 2.6 版本以前的问题<a class="headerlink" href="#redis-2-6" title="Permalink to this headline">¶</a></h2>
+<h2>Redis 在 2.6 版本以前的问题<a class="headerlink" href="#redis-2-6" title="Link to this heading">¶</a></h2>
 <p>将前面的第一版(不安全的) <code class="docutils literal notranslate"><span class="pre">LPOPRPUSH</span></code> 和第二版(安全的) <code class="docutils literal notranslate"><span class="pre">LPOPRPUSH</span></code> 放在一起进行对比是一个很有教益的练习，我们可以从中提炼出两个版本之间的一些共性和问题，比如说：</p>
 <ol class="arabic simple">
 <li><p>两个版本使用的核心命令是完全一样的(不包括事务方面的命令)</p></li>
@@ -254,7 +253,7 @@
 <p>幸运的是，随着 Redis 2.6 版本的出现，这种对 <code class="docutils literal notranslate"><span class="pre">WATCH</span></code> 和事务的滥用即将走向终点，因为在 Redis 2.6 版本中，新添加了对 Lua 脚本的支持，从而让我们可以将条件判断这类简单的操作和对 Redis 命令的调用都放到 Redis 服务器里完成，而这一切，仅仅需要一个 <code class="docutils literal notranslate"><span class="pre">EVAL</span></code> 命令。</p>
 </section>
 <section id="eval">
-<h2>EVAL<a class="headerlink" href="#eval" title="Permalink to this headline">¶</a></h2>
+<h2>EVAL<a class="headerlink" href="#eval" title="Link to this heading">¶</a></h2>
 <p><a class="reference external" href="http://redis.readthedocs.org/en/latest/script/eval.html">EVAL</a> 是 Redis 2.6 版本新增命令的其中一个，同时也是最重要的一个，通过这个命令，可以直观、优雅且高效地解决像 <code class="docutils literal notranslate"><span class="pre">LPOPRPUSH</span></code> 这类 CAS 问题，文章稍后就会给出用脚本实现 <code class="docutils literal notranslate"><span class="pre">LPOPRPUSH</span></code> 的代码，但在此之前，不妨先来简单认识一下 <code class="docutils literal notranslate"><span class="pre">EVAL</span></code> 命令。</p>
 <p><code class="docutils literal notranslate"><span class="pre">EVAL</span></code> 命令的调用形式是 <code class="docutils literal notranslate"><span class="pre">EVAL</span> <span class="pre">script</span> <span class="pre">numkeys</span> <span class="pre">key</span> <span class="pre">[key</span> <span class="pre">...]</span> <span class="pre">arg</span> <span class="pre">[arg</span> <span class="pre">..]</span></code> ，它的参数分别是：</p>
 <p><code class="docutils literal notranslate"><span class="pre">script</span></code> ：一段 Lua 脚本代码(Lua 5.1版本)
@@ -331,7 +330,7 @@
 </div>
 </section>
 <section id="id4">
-<h2>LPOPRPUSH 的脚本实现<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>LPOPRPUSH 的脚本实现<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
 <p>在上一节，我们介绍了 <code class="docutils literal notranslate"><span class="pre">EVAL</span></code> 的两个特性：</p>
 <ol class="arabic simple">
 <li><p>可以使用 <code class="docutils literal notranslate"><span class="pre">EVAL</span></code> 命令对 Lua 脚本进行求值</p></li>
@@ -376,7 +375,7 @@
 <p>更重要的是，除了 <code class="docutils literal notranslate"><span class="pre">LPOPRPUSH</span></code> 之外，一大类 CAS 操作也可以用脚本的方式来解决，随着 Redis 2.6 版本的普及，可以预见的是，越来越多以前使用 <code class="docutils literal notranslate"><span class="pre">WATCH</span></code> 和事务来保证原子性的模式会逐渐被脚本实现所代替，更多有趣的新脚本模式也会陆续出现，这毫无疑问是非常让人期待的。</p>
 </section>
 <section id="id5">
-<h2>更多<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<h2>更多<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
 <p>关于 Redis 2.6 版本新增的脚本功能，这篇文章只是谈了其中的一小部分，很多有趣的特性因为篇幅关系都未能在文章里提及：比如使用 <code class="docutils literal notranslate"><span class="pre">EVALSHA</span></code> 优化带宽、使用 <code class="docutils literal notranslate"><span class="pre">SCRIPT</span> <span class="pre">*</span></code> 命令控制脚本缓存、脚本的沙箱和最大执行时间等等，关于这些特性，可以参考 Redis 的官方文档。</p>
 <div class="line-block">
 <div class="line">huangz</div>
@@ -398,7 +397,7 @@
     </p>
     <p>
         &copy; Copyright 2024, 黄健宏.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
     </p>
   </div>
 </footer>

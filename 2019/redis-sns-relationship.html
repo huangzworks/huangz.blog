@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>使用 Redis 储存社交关系 &#8212; huangz.blog</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=e9ae6b2d" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+    <script src="../_static/documentation_options.js?v=e343978f"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
 <meta charset='utf-8'>
@@ -112,7 +111,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="redis">
-<h1>使用 Redis 储存社交关系<a class="headerlink" href="#redis" title="Permalink to this headline">¶</a></h1>
+<h1>使用 Redis 储存社交关系<a class="headerlink" href="#redis" title="Link to this heading">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>本文摘录自即将出版的《Redis使用手册》，
@@ -154,7 +153,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">user</span>
 
     <span class="k">def</span> <span class="nf">follow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        关注目标用户。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># 把 target 添加到当前用户的正在关注集合里面</span>
@@ -165,7 +164,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">sadd</span><span class="p">(</span><span class="n">target_follower_set</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">unfollow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        取消对目标用户的关注。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1"># 从当前用户的正在关注集合中移除 target</span>
@@ -176,7 +175,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">srem</span><span class="p">(</span><span class="n">target_follower_set</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">is_following</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        检查当前用户是否正在关注目标用户，</span>
 <span class="sd">        是的话返回 True ，否则返回 False 。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -186,28 +185,28 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">sismember</span><span class="p">(</span><span class="n">user_following_set</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">get_all_following</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        返回当前用户正在关注的所有人。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">user_following_set</span> <span class="o">=</span> <span class="n">following_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">smembers</span><span class="p">(</span><span class="n">user_following_set</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">get_all_follower</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        返回当前用户的所有关注者。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">user_follower_set</span> <span class="o">=</span> <span class="n">follower_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">smembers</span><span class="p">(</span><span class="n">user_follower_set</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">count_following</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        返回当前用户正在关注的人数。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">user_following_set</span> <span class="o">=</span> <span class="n">following_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">client</span><span class="o">.</span><span class="n">scard</span><span class="p">(</span><span class="n">user_following_set</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">count_follower</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        返回当前用户的关注者人数。</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">user_follower_set</span> <span class="o">=</span> <span class="n">follower_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">user</span><span class="p">)</span>
@@ -254,7 +253,7 @@
     </p>
     <p>
         &copy; Copyright 2024, 黄健宏.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
     </p>
   </div>
 </footer>

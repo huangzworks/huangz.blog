@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>全面解读Redis新协议声明 &#8212; huangz.blog</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=e9ae6b2d" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+    <script src="../_static/documentation_options.js?v=e343978f"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="2023" href="../2023/index.html" />
@@ -128,7 +127,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="redis">
-<h1>全面解读Redis新协议声明<a class="headerlink" href="#redis" title="Permalink to this headline">¶</a></h1>
+<h1>全面解读Redis新协议声明<a class="headerlink" href="#redis" title="Link to this heading">¶</a></h1>
 <p>Redis公司最近在一篇博文中<a class="reference external" href="https://redis.com/blog/redis-adopts-dual-source-available-licensing/">声明他们将修改Redis项目的许可方式</a>，将其从BSD三条款协议修改为RSAL或SSPL的双重协议许可。</p>
 <p>这篇文章将对该声明进行翻译，详细解读其中每段文字，并说明它们可能产生的影响。其中的</p>
 <blockquote>
@@ -136,7 +135,7 @@
 </div></blockquote>
 <p>为声明的原文，而其余内容则是我的解读。</p>
 <section id="id1">
-<h2>许可的变更与选择<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>许可的变更与选择<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
 <blockquote>
 <div><p>从今天开始，Redis未来的所有版本都将通过源码可用许可证发布。</p>
 <p>从Redis7.4开始，Redis将采用Redis Source Available License（RSALv2）和Server Side Public License（SSPLv1）双重许可，而不再根据BSD三条款进行分发。</p>
@@ -155,7 +154,7 @@
 <p>换句话说，RSAL不允许你将Redis作为服务提供给第三方，除非你进行付费；而SSPL则允许你使用Redis向第三方提供服务，但要求你将提供此服务的源代码开源。你可以根据自己的情况选择这两个协议的其中一个进行许可。</p>
 </section>
 <section id="id2">
-<h2>现在与未来<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>现在与未来<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <blockquote>
 <div><p>Redis自诞生之日起，就凭借其出众的性能和简洁性，驱动应用程序和数据基础架构为现代互联网提供动力。</p>
 <p>时至今日，在15年后的今天，Redis为全球数以百万计的开发者提供服务，支持全世界都在使用的实时应用程序，我们对此深感自豪。</p>
@@ -181,7 +180,7 @@ Stack之后的新版Redis
 8.0将变得更加强大，并且具有更多玩法，这是值得期待的。</p>
 </section>
 <section id="id3">
-<h2>矛盾与解决方案<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<h2>矛盾与解决方案<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
 <blockquote>
 <div><p>Redis（项目）的成功带来了一系列独特的挑战。</p>
 <p>Redis（公司）一直赞助大部分的开发工作，并且（Redis项目本身）也具有一个充满活力并且乐于奉献的开发社区。</p>
@@ -204,7 +203,7 @@ Stack之后的新版Redis
 <p>以往虽然兼容Redis协议的竞品也有很多，但Redis凭借其先发优势还是牢牢占据着领先地位，但现在既然Redis主动放弃开源这一优势，那么像Garnet这类兼容Redis协议的项目将有机会进一步吸引开源青睐者，形成百家争鸣的景象，甚至最终某个项目脱颖而出并且撼动Redis的霸主地位也并非不可能。</p>
 </section>
 <section id="id4">
-<h2>与开发者和社区的关系<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<h2>与开发者和社区的关系<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
 <blockquote>
 <div><p>从实际来说，Redis开发者社区将继续在双重协议下获得许可，此次变动不会给他们造成任何影响。</p>
 <p>与此同时，由Redis负责的所有Redis客户端将继续保持开源许可。</p>
@@ -240,7 +239,7 @@ Stack之后的新版Redis
     </p>
     <p>
         &copy; Copyright 2024, 黄健宏.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
     </p>
   </div>
 </footer>

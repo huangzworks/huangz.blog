@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en" data-content_root="../">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>为 Manjaro 18.1.4 配置无线网卡 &#8212; huangz.blog</title>
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=e9ae6b2d" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
+    <script src="../_static/documentation_options.js?v=e343978f"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="《Get Programming with Go》中文版译者序" href="gpwgcn-preface.html" />
@@ -126,18 +125,18 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="manjaro-18-1-4">
-<h1>为 Manjaro 18.1.4 配置无线网卡<a class="headerlink" href="#manjaro-18-1-4" title="Permalink to this headline">¶</a></h1>
+<h1>为 Manjaro 18.1.4 配置无线网卡<a class="headerlink" href="#manjaro-18-1-4" title="Link to this heading">¶</a></h1>
 <p>最近在用 Manjaro 工作，
 想找个合适的无线网卡用但是网上的中文资料并不多，
 特作此文希望能帮助到后来者。</p>
 <section id="id1">
-<h2>系统&amp;设备<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>系统&amp;设备<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
 <p>系统版本： Manjaro 18.1.4</p>
 <p>Linux 内核版本： 5.3.15</p>
 <p>无线网卡： EDIMAX EW-7822UTC （USB 接口，5G 双频）</p>
 </section>
 <section id="id2">
-<h2>步骤<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<h2>步骤<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <p>首先使用 <code class="docutils literal notranslate"><span class="pre">lsusb</span></code> 命令查看 USB 设备是否已经被正确识别：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lsusb -v | more
 ...
@@ -214,7 +213,7 @@ wifi 应该就能够正常工作了。</p>
     </p>
     <p>
         &copy; Copyright 2024, 黄健宏.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 7.2.6.<br/>
     </p>
   </div>
 </footer>
