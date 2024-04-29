@@ -4,6 +4,7 @@
 .. toctree::
    :maxdepth: 2
 
+   maze
    valkey-ga-release
    valkey
    post-redis-era
