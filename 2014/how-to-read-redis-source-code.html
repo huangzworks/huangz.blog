@@ -405,7 +405,7 @@
 那么恭喜你，
 你已经读完了 Redis 单机功能和多机功能的所有代码了！</p>
 <p>下图总结了本文介绍的阅读顺序：</p>
-digraph {
+<div class="graphviz"><img src="../_images/graphviz-d1b267bf16fa8259ed60364c8743d39a30db36c6.png" alt="digraph {
 
     node [shape = plaintext]
 
@@ -425,7 +425,8 @@ digraph {
 
     datastruct -&gt; encoding_datastruct -&gt; object -&gt; db -&gt; client_and_server -&gt; multi_server
 
-}</section>
+}" class="graphviz" /></div>
+</section>
 <section id="id7">
 <h2>结语<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
 <p>Redis 的设计非常简洁、优美、精巧和高效，
