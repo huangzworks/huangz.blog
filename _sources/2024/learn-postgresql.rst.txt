@@ -38,7 +38,7 @@ Tutorial》 <https://www.geeksforgeeks.org/sql-tutorial/>`__\ ，前者对初学
 作为“The World’s Most Advanced Open Source Relational
 Database（世上最先进的开源关系数据库）”，PostgreSQL实现了很多其他关系数据库不具备的特性，而在学习基本的SQL知识之后，我们接下来要学习和了解的就是PostgreSQL支持的更强大的特性。
 
-对于了解PostgreSQL自身来说，没有比\ `官方文档 <https://www.postgresql.org/docs/current/index.html>`__\ 更好的资料了，在这个阶段，文档的《第二部分：SQL语言》、《第三部分：服务器管理》、《第五部分：服务器编程》和《第六部分：参考手册》应该都是你经常翻阅的对象。
+对于了解PostgreSQL自身来说，没有比\ `官方文档 <https://www.postgresql.org/docs/current/index.html>`__\ 更好的资料了，在这个阶段，文档的《II. The SQL Language》、《III. Server Administration》、《V. Server Programming》和《VI. Reference》应该都是你经常翻阅的对象。
 
 至于图书我推荐的是\ `《PostgreSQL修炼之道》 <https://item.jd.com/12736201.html>`__\ ，这本书内容很全面，PostgreSQL的方方面面都有涉及，是我经常会查阅的PostgreSQL中文参考资料之一。
 
@@ -56,7 +56,7 @@ PostgreSQL之所以强大，不仅仅因为它是一个功能强劲的关系数�
 
 最后，在掌握了PostgreSQL自身及其支持的丰富的扩展之后，你可能还想更进一步，了解PostgreSQL自身的构成以及RDBMS（关系数据库管理系统）的实现方式，从而更好地理解PostgreSQL的运作原理，乃至开始对PostgreSQL自身进行修改等等。
 
-对于了解PostgreSQL的构造来说，官方文档的\ `《第七部分：内部剖析》 <https://www.postgresql.org/docs/current/internals.html>`__\ 是很好的起点。至于了解RDBMS的实现原理，可以推荐的图书是\ `《数据库系统概念》 <https://item.jd.com/13318646.html>`__\ 和\ `《数据库系统内幕》 <https://item.jd.com/12656779.html>`__\ ，前者理论内容丰富，讲解了整个数据库系统实现原理的方方面面，而后者则主要关注实现数据库的核心算法和数据结构。
+对于了解PostgreSQL的构造来说，官方文档的\ `《VII. Internals》 <https://www.postgresql.org/docs/current/internals.html>`__\ 是很好的起点。至于了解RDBMS的实现原理，可以推荐的图书是\ `《数据库系统概念》 <https://item.jd.com/13318646.html>`__\ 和\ `《数据库系统内幕》 <https://item.jd.com/12656779.html>`__\ ，前者理论内容丰富，讲解了整个数据库系统实现原理的方方面面，而后者则主要关注实现数据库的核心算法和数据结构。
 
 最后，为了构建强大的数据库系统，分布式知识是必不可少的，这方面我推荐的图书是\ `《分布式数据库原理、架构与实践》 <https://item.jd.com/13495948.html>`__\ 。这本书介绍了很多数据库相关的主流分布式模型的理论知识，是深入特定模型、研读特定论文之前的一本很好的前置阅读材料。
 
