@@ -4,6 +4,7 @@
 .. toctree::
    :maxdepth: 2
 
+   postgresql-for-everything
    mariadb-vs-mysql
    mariadb-vs-mongodb
    mariadb-vs-postgresql
