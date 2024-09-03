@@ -4,6 +4,7 @@
 .. toctree::
    :maxdepth: 2
 
+   redis-release
    hash-ttl
    postgresql-for-everything
    mariadb-vs-mysql
