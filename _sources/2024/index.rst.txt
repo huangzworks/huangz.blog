@@ -4,6 +4,7 @@
 .. toctree::
    :maxdepth: 2
 
+   valkey8
    fp
    redis-release
    hash-ttl
