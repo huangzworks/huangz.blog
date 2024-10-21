@@ -21,9 +21,9 @@ Valkey团队在9月中旬释出了Valkey
 
 .. image:: ./images/valkey8/4.png
 
-简单来说，正如Valkey团队在他们博客标题里所说的那样：如果你是Valkey
-7.2或者Redis
-7.2的用户，那么只要使用Valkey 8.0来代替之前的版本，你就能立即获得\ `相当于原来三倍的性能提升 <https://valkey.io/blog/unlock-one-million-rps/>`__\ ！显著的性能提升带来的一个直接影响是，Valkey项目的其中一个主要合作伙伴——AWS，已经开始在它们自家的内存存储产品中\ `推荐使用Valkey引擎来代替原有的Redis引擎 <https://www.lastweekinaws.com/blog/aws-valkey-play-when-a-fork-becomes-a-price-cut>`__\ ，而更换引擎之后的费用将比之前降低1/3。这对于用户来说是非常有吸引力的：他们不仅节约了费用，还获得了更高的性能！
+简单来说，正如Valkey团队在他们博客标题里所说的那样：
+**如果你是Valkey 7.2或者Redis 7.2的用户，那么只要使用Valkey 8.0来代替之前的版本，你就能立即获得相当于原来三倍的性能提升！**
+显著的性能提升带来的一个直接影响是，Valkey项目的其中一个主要合作伙伴——AWS，已经开始在它们自家的内存存储产品中\ `推荐使用Valkey引擎来代替原有的Redis引擎 <https://www.lastweekinaws.com/blog/aws-valkey-play-when-a-fork-becomes-a-price-cut>`__\ ，而更换引擎之后的费用将比之前降低1/3。这对于用户来说是非常有吸引力的：他们不仅节约了费用，还获得了更高的性能！
 
 .. image:: ./images/valkey8/5.png
 
@@ -41,7 +41,7 @@ Valkey团队在9月中旬释出了Valkey
 
 顺利发布首个主要新版本、大幅提升性能、开始被云服务提供商选用并陆续进入各个Linux发行版的标准软件库——尽管\ `Valkey项目启动 <https://www.linuxfoundation.org/press/linux-foundation-launches-open-source-valkey-community>`__\ 至今不过半年左右的时间，但目前来看，他们的每一步都走得相当坚实，祝贺他们！
 
-今后我将继续关注Valkey项目，了解他们接下来如何向前迈进以及如何与Redis进行竞争，同样关心Valkey的朋友别忘了在\ `微博 <https://weibo.com/u/3219474004>`__\ 、\ `推特 <https://x.com/huangzworks>`__\ 和\ `B站 <https://space.bilibili.com/240200009>`__\ 关注我，有新消息的话我会第一时间跟大家分享！
+今后我将继续关注Valkey项目，了解他们接下来如何向前迈进以及如何与Redis进行竞争，同样关心Valkey的朋友别忘了在\ `微博 <https://weibo.com/u/3219474004>`__\ 、\ `推特 <https://x.com/huangzworks>`__\ 和\ `哔站 <https://space.bilibili.com/240200009>`__\ 关注我，有新消息的话我会第一时间跟大家分享！
 
 | 黄健宏 
 | 2024.10.21
