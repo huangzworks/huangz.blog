@@ -4,6 +4,7 @@
 .. toctree::
    :maxdepth: 2
 
+   redis8-m01
    valkey8
    fp
    redis-release
