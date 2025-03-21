@@ -1,8 +1,7 @@
 Redis 8.0-M04新增命令介绍（HGETDEL 、HSETEX和HGETEX）
 ============================================================================
 
-Redis前天深夜释出了最新的Redis 8预览版8.0
-M04，新增了\ ``HGETDEL``\ 、\ ``HSETEX``\ 和\ ``HGETEX``\ 三个命令。
+Redis前天深夜释出了最新的\ `Redis 8预览版8.0 M04 <https://github.com/redis/redis/releases/tag/8.0-m04>`_\ ，新增了\ ``HGETDEL``\ 、\ ``HSETEX``\ 和\ ``HGETEX``\ 三个命令。
 
 这几个命令应该是对Redis
 7.4新增的哈\ `希字段自动过期时间特性 <https://huangz.blog/2024/hash-ttl.html>`__\ 的进一步补充和增强，本文将对它们进行介绍。
