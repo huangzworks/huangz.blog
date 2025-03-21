@@ -4,5 +4,6 @@
 .. toctree::
    :maxdepth: 2
 
+   redis8-m04
    sql-interview
    direct-install-redis8-milestone
