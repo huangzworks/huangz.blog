@@ -84,7 +84,7 @@
 <li><a class="reference internal" href="#hgetdel">HGETDEL命令</a></li>
 <li><a class="reference internal" href="#hsetex">HSETEX命令</a></li>
 <li><a class="reference internal" href="#hgetex">HGETEX命令</a><ul>
-<li><a class="reference internal" href="#id1">结语</a></li>
+<li><a class="reference internal" href="#id2">结语</a></li>
 </ul>
 </li>
 </ul>
@@ -131,9 +131,9 @@
       
   <section id="redis-8-0-m04-hgetdel-hsetexhgetex">
 <h1>Redis 8.0-M04新增命令介绍（HGETDEL 、HSETEX和HGETEX）<a class="headerlink" href="#redis-8-0-m04-hgetdel-hsetexhgetex" title="Link to this heading">¶</a></h1>
-<p>Redis前天深夜释出了最新的<a class="reference external" href="https://github.com/redis/redis/releases/tag/8.0-m04">Redis 8预览版8.0 M04</a>，新增了<code class="docutils literal notranslate"><span class="pre">HGETDEL</span></code>、<code class="docutils literal notranslate"><span class="pre">HSETEX</span></code>和<code class="docutils literal notranslate"><span class="pre">HGETEX</span></code>三个命令。</p>
-<p>这几个命令应该是对Redis
-7.4新增的哈<a class="reference external" href="https://huangz.blog/2024/hash-ttl.html">希字段自动过期时间特性</a>的进一步补充和增强，本文将对它们进行介绍。</p>
+<p>Redis前天深夜释出了最新的<a class="reference external" href="https://github.com/redis/redis/releases/tag/8.0-m04">Redis 8预览版8.0 M04</a>，新增了<code class="docutils literal notranslate"><span class="pre">HGETDEL</span></code>、<code class="docutils literal notranslate"><span class="pre">HSETEX</span></code>和<code class="docutils literal notranslate"><span class="pre">HGETEX</span></code>三个命令。
+这些命令可以看作是Redis在7.4版本新增<a class="reference external" href="https://huangz.blog/2024/hash-ttl.html">哈希字段自动过期特性</a>之后，对哈希功能的进一步补充和完善。</p>
+<p>本文将对上述三个命令进行介绍。</p>
 <section id="hgetdel">
 <h2>HGETDEL命令<a class="headerlink" href="#hgetdel" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">HGETDEL</span></code>命令可以根据给定的一个或多个字段从哈希中取出与之对应的值，并在之后将所有给定字段从哈希中移除：</p>
@@ -213,8 +213,8 @@
 <span class="mi">3</span><span class="p">)</span> <span class="p">(</span><span class="n">integer</span><span class="p">)</span> <span class="mi">594</span>
 </pre></div>
 </div>
-<section id="id1">
-<h3>结语<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<section id="id2">
+<h3>结语<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
 <p>好的，关于这三个新命令的简单介绍就到这里结束。</p>
 <p>我会继续关注Redis
 8的最新动态，有新消息再跟大家分享，欢迎大家关注<a class="reference external" href="https://huangz.works/">我的博客和社交媒体</a>。</p>
