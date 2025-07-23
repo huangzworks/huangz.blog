@@ -4,6 +4,7 @@
 .. toctree::
    :maxdepth: 2
 
+   peter-zaitsev
    redis8-ga
    redis8-m04
    sql-interview
