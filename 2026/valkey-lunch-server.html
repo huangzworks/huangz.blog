@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Valkey源码剖析（1）：启动服务器 &#8212; huangz.blog</title>
+    <title>Valkey 9.0源码剖析（1）：启动服务器 &#8212; huangz.blog</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=e9ae6b2d" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
@@ -81,7 +81,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Valkey源码剖析（1）：启动服务器</a><ul>
+<li><a class="reference internal" href="#">Valkey 9.0源码剖析（1）：启动服务器</a><ul>
 <li><a class="reference internal" href="#id1">初始化服务器</a></li>
 <li><a class="reference internal" href="#id2">载入配置选项</a></li>
 <li><a class="reference internal" href="#id3">根据配置选项进一步初始化服务器</a></li>
@@ -130,8 +130,8 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <section id="valkey-1">
-<h1>Valkey源码剖析（1）：启动服务器<a class="headerlink" href="#valkey-1" title="Link to this heading">¶</a></h1>
+  <section id="valkey-9-0-1">
+<h1>Valkey 9.0源码剖析（1）：启动服务器<a class="headerlink" href="#valkey-9-0-1" title="Link to this heading">¶</a></h1>
 <p>Valkey服务器的启动逻辑定义在server.c/main()函数中：</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cm">/* Main is marked as weak so that unit tests can use their own main function. */</span>
 <span class="n">__attribute__</span><span class="p">((</span><span class="n">weak</span><span class="p">))</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
