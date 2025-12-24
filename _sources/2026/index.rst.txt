@@ -4,5 +4,6 @@
 .. toctree::
    :maxdepth: 2
 
+   valkey-event-loop
    valkey-server-struct
    valkey-lunch-server
