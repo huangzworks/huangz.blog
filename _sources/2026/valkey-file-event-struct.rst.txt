@@ -1,0 +1,66 @@
+Valkey 9.0源码剖析（5）：文件事件表示
+=====================================
+
+Valkey中的文件事件是网络套接字操作的抽象，主要用于监听并处理套接字的可读和可写状态：当被监听套接字的读操作或者写操作可以执行时，服务器就认为该套接字对应的文件事件“已就绪”，之后服务器就会调用与套接字相关联的事件处理回调函数来处理相应的读写事件。
+
+简单来说，当Valkey服务器准备好接收某个客户端的命令请求时，该客户端对应套接字的文件事件中的读事件就会就绪；而当某个客户端准备好接收Valkey服务器发送的命令回复时，该客户端对应套接字的文件事件中的写事件就会就绪。
+
+Valkey服务器使用\ ``ae.h/aeFileEvent``\ 结构表示套接字正在被监听的文件事件，以下是该结构的完整定义：
+
+.. code:: c
+
+   typedef struct aeFileEvent {
+       // 掩码（用于标识想要监听的事件）
+       int mask; /* one of AE_(READABLE|WRITABLE|BARRIER) */
+       // 事件处理函数（一个用于处理读事件，一个用于处理写事件）
+       aeFileProc *rfileProc;
+       aeFileProc *wfileProc;
+       // 客户端数据
+       void *clientData;
+   } aeFileEvent;
+
+结构中的\ ``mask``\ 属性记录了服务器想要监听的具体事件（写还是读？）以及事件就绪时负责处理这两种事件的回调函数。
+
+当被监听套接字的文件事件就绪时，服务器将使用\ ``ae.h/aeFiredEvent``\ 结构进行表示，以下是该结构的完整定义：
+
+.. code:: c
+
+   typedef struct aeFiredEvent {
+       // 已就绪的文件描述符
+       int fd;
+       // 已就绪的事件
+       int mask;
+   } aeFiredEvent;
+
+Valkey服务器在启动的过程中，会在调用\ ``ae.c/aeCreateEventLoop()``\ 函数的时候，传入服务器允许连接的最大客户端数量：
+
+.. code:: c
+
+   void initServer(void) {
+       // ...
+       
+       // 将最大可连接客户端数量传入函数
+       server.el = aeCreateEventLoop(server.maxclients + CONFIG_FDSET_INCR);
+       
+       // ...
+   }
+
+而\ ``aeCreateEventLoop()``\ 函数则会根据这一数量，为每个客户端的套接字分别创建相应的\ ``aeFileEvent``\ 结构和\ ``aeFiredEvent``\ 结构：
+
+.. code:: c
+
+   aeEventLoop *aeCreateEventLoop(int setsize) {
+       //...
+       
+       eventLoop->events = zmalloc(sizeof(aeFileEvent) * setsize);
+       eventLoop->fired = zmalloc(sizeof(aeFiredEvent) * setsize);
+       
+       // ...
+   }
+
+比如说，在处理套接字文件描述符为10086的客户端时，\ ``server.el->events[10086]``\ 记录的就是该客户端正在被监听的文件事件，而\ ``server.el->fired[10086]``\ 记录的就是该客户端目前已就绪的文件事件。
+
+关于文件事件的介绍就到此结束，接下来的文章将介绍时间事件。
+
+| 黄健宏
+| 2025.12.27
