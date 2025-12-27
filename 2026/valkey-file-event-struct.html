@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Valkey 9.0源码剖析（5）：文件事件表示 &#8212; huangz.blog</title>
+    <title>Valkey 9.0源码剖析（5）：文件事件的表示 &#8212; huangz.blog</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=e9ae6b2d" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
@@ -81,7 +81,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">Valkey 9.0源码剖析（5）：文件事件表示</a></li>
+<li><a class="reference internal" href="#">Valkey 9.0源码剖析（5）：文件事件的表示</a></li>
 </ul>
 </ul>
 </li>
@@ -123,7 +123,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="valkey-9-0-5">
-<h1>Valkey 9.0源码剖析（5）：文件事件表示<a class="headerlink" href="#valkey-9-0-5" title="Link to this heading">¶</a></h1>
+<h1>Valkey 9.0源码剖析（5）：文件事件的表示<a class="headerlink" href="#valkey-9-0-5" title="Link to this heading">¶</a></h1>
 <p>Valkey中的文件事件是网络套接字操作的抽象，主要用于监听并处理套接字的可读和可写状态：当被监听套接字的读操作或者写操作可以执行时，服务器就认为该套接字对应的文件事件“已就绪”，之后服务器就会调用与套接字相关联的事件处理回调函数来处理相应的读写事件。</p>
 <p>简单来说，当Valkey服务器准备好接收某个客户端的命令请求时，该客户端对应套接字的文件事件中的读事件就会就绪；而当某个客户端准备好接收Valkey服务器发送的命令回复时，该客户端对应套接字的文件事件中的写事件就会就绪。</p>
 <p>Valkey服务器使用<code class="docutils literal notranslate"><span class="pre">ae.h/aeFileEvent</span></code>结构表示套接字正在被监听的文件事件，以下是该结构的完整定义：</p>
@@ -139,7 +139,7 @@
 </pre></div>
 </div>
 <p>结构中的<code class="docutils literal notranslate"><span class="pre">mask</span></code>属性记录了服务器想要监听的具体事件（写还是读？）以及事件就绪时负责处理这两种事件的回调函数。</p>
-<p>当被监听套接字的文件事件就绪时，服务器将使用<code class="docutils literal notranslate"><span class="pre">ae.h/aeFiredEvent</span></code>结构进行表示，以下是该结构的完整定义：</p>
+<p>与此对应，当有被监听套接字的文件事件就绪时，服务器将使用<code class="docutils literal notranslate"><span class="pre">ae.h/aeFiredEvent</span></code>结构进行表示，以下是该结构的完整定义：</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">aeFiredEvent</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// 已就绪的文件描述符</span>
 <span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">fd</span><span class="p">;</span>
@@ -159,7 +159,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>而<code class="docutils literal notranslate"><span class="pre">aeCreateEventLoop()</span></code>函数则会根据这一数量，为每个客户端的套接字分别创建相应的<code class="docutils literal notranslate"><span class="pre">aeFileEvent</span></code>结构和<code class="docutils literal notranslate"><span class="pre">aeFiredEvent</span></code>结构：</p>
+<p>而<code class="docutils literal notranslate"><span class="pre">aeCreateEventLoop()</span></code>函数则会根据这一数量创建相应数量的<code class="docutils literal notranslate"><span class="pre">aeFileEvent</span></code>结构和<code class="docutils literal notranslate"><span class="pre">aeFiredEvent</span></code>结构：</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">aeEventLoop</span><span class="w"> </span><span class="o">*</span><span class="nf">aeCreateEventLoop</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">setsize</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">//...</span>
 
@@ -170,8 +170,13 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>比如说，在处理套接字文件描述符为10086的客户端时，<code class="docutils literal notranslate"><span class="pre">server.el-&gt;events[10086]</span></code>记录的就是该客户端正在被监听的文件事件，而<code class="docutils literal notranslate"><span class="pre">server.el-&gt;fired[10086]</span></code>记录的就是该客户端目前已就绪的文件事件。</p>
-<p>关于文件事件的介绍就到此结束，接下来的文章将介绍时间事件。</p>
+<p>注意，虽然<code class="docutils literal notranslate"><span class="pre">aeEventLoop</span></code>结构的<code class="docutils literal notranslate"><span class="pre">events</span></code>数组和<code class="docutils literal notranslate"><span class="pre">fired</span></code>数组拥有相同的大小，但它们的作用和用法并不相同：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">events</span></code>数组的每个元素跟客户端套接字的文件描述符都是一对一的关系，比如<code class="docutils literal notranslate"><span class="pre">events[100]</span></code>元素记录的就是服务器正在监听的文件描述符为100的套接字的文件事件信息。</p></li>
+<li><p>与此不同，<code class="docutils literal notranslate"><span class="pre">fired</span></code>数组的元素跟客户端套接字的文件描述符并非一对一关系，比如<code class="docutils literal notranslate"><span class="pre">fired[100]</span></code>元素记录的就是服务器在休眠期间文件事件就绪了的第100个套接字，而这个套接字可以是所有已连接客户端的任何一个，这也是<code class="docutils literal notranslate"><span class="pre">aeFiredEvent</span></code>结构需要记录已就绪套接字文件描述符的原因。</p></li>
+</ul>
+<p>具体的细节在之后描述事件处理过程的文章中会进一步叙述。</p>
+<p>好的，关于文件事件的介绍就到此结束，接下来的文章将介绍时间事件。</p>
 <div class="line-block">
 <div class="line">黄健宏</div>
 <div class="line">2025.12.27</div>
