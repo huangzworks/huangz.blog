@@ -4,6 +4,7 @@
 .. toctree::
    :maxdepth: 2
 
+   valkey-multiplexing
    valkey-time-event-process
    valkey-file-event-process
    valkey-time-event-struct
