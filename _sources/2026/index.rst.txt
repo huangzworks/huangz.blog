@@ -4,6 +4,7 @@
 .. toctree::
    :maxdepth: 2
 
+   valkey-lookup-command
    valkey-command-table
    valkey-command-struct
    valkey-multiplexing
