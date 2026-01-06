@@ -125,12 +125,27 @@
   <section id="valkey-12">
 <h1>Valkey源码剖析（12）：查找命令<a class="headerlink" href="#valkey-12" title="Link to this heading">¶</a></h1>
 <p>前面的文章介绍了Valkey服务器如何通过<code class="docutils literal notranslate"><span class="pre">populateCommandTable()</span></code>函数构建起将命令名映射至命令结构的命令表。下面来看看，在客户端向服务器发送命令请求的时候，Valkey服务器是如何根据请求查找对应命令的。</p>
-<p>当Valkey服务器接收到客户端发送的命令请求之后，它会对请求进行解析，然后将请求想要执行的命令及其参数以<code class="docutils literal notranslate"><span class="pre">server.h/robj</span></code>数组的方式存储起来。比如说，当Valkey服务器接收到客户端发送的以下命令时：</p>
+<p>当Valkey服务器接收到客户端发送的命令请求之后，它会对请求进行解析，然后将请求想要执行的命令参数以及命令参数的个数记录到客户端对应的<code class="docutils literal notranslate"><span class="pre">server.h/client</span></code>结构中：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">client</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="c1">// ...</span>
+
+<span class="w">    </span><span class="c1">// 命令参数</span>
+<span class="w">    </span><span class="n">robj</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">;</span><span class="w">         </span><span class="cm">/* Arguments of current command. */</span>
+<span class="w">    </span><span class="c1">// 命令参数数量</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">;</span><span class="w">            </span><span class="cm">/* Num of arguments of current command. */</span>
+
+<span class="w">    </span><span class="c1">// ...</span>
+
+<span class="p">}</span><span class="w"> </span><span class="n">client</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>举个例子，当Valkey服务器接收到客户端发送的以下命令时：</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>SET<span class="w"> </span>msg<span class="w"> </span><span class="s2">&quot;hello&quot;</span>
 </pre></div>
 </div>
-<p>服务器将创建一个包含三个<code class="docutils literal notranslate"><span class="pre">robj</span></code>对象的数组，它们分别存储着<code class="docutils literal notranslate"><span class="pre">&quot;SET&quot;</span></code>、<code class="docutils literal notranslate"><span class="pre">&quot;msg&quot;</span></code>、和<code class="docutils literal notranslate"><span class="pre">&quot;hello&quot;</span></code>三个字符串，其中第一个字符串为命令，而后面两个字符串则为参数。</p>
-<p>之后，服务器会调用<code class="docutils literal notranslate"><span class="pre">server.c/lookupCommand()</span></code>函数，并将<code class="docutils literal notranslate"><span class="pre">robj</span></code>指针类型的数组<code class="docutils literal notranslate"><span class="pre">argv</span></code>以及数组的长度<code class="docutils literal notranslate"><span class="pre">argv</span></code>传递给该函数以查找命令对应的命令结构：</p>
+<p>服务器将把该客户端对应<code class="docutils literal notranslate"><span class="pre">client</span></code>结构的<code class="docutils literal notranslate"><span class="pre">argv</span></code>属性设置为包含<code class="docutils literal notranslate"><span class="pre">&quot;SET&quot;</span></code>、<code class="docutils literal notranslate"><span class="pre">&quot;msg&quot;</span></code>、<code class="docutils literal notranslate"><span class="pre">&quot;hello&quot;</span></code>三个参数的数组，并将<code class="docutils literal notranslate"><span class="pre">argc</span></code>属性的值设置为3。</p>
+<p>之后，服务器会调用<code class="docutils literal notranslate"><span class="pre">server.c/lookupCommand()</span></code>函数，并将客户端的<code class="docutils literal notranslate"><span class="pre">argv</span></code>、<code class="docutils literal notranslate"><span class="pre">argc</span></code>属性传递给该函数以查找命令对应的命令结构，并在找到之后将其记录在<code class="docutils literal notranslate"><span class="pre">client</span></code>结构的<code class="docutils literal notranslate"><span class="pre">cmd</span></code>属性中：</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">serverCommand</span><span class="w"> </span><span class="o">*</span><span class="n">lookupCommand</span><span class="p">(</span><span class="n">robj</span><span class="w"> </span><span class="o">**</span><span class="n">argv</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">lookupCommandLogic</span><span class="p">(</span><span class="n">server</span><span class="p">.</span><span class="n">commands</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">,</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
 <span class="p">}</span>
@@ -157,10 +172,23 @@
 </div>
 <p>从上面展示的代码可以看到，<code class="docutils literal notranslate"><span class="pre">lookupSubcommand()</span></code>函数将调用<code class="docutils literal notranslate"><span class="pre">server.c/lookupCommandLogic()</span></code>函数，而后者会继续调用<code class="docutils literal notranslate"><span class="pre">hashtable.c/hashtableFind()</span></code>函数，并根据给定的命令名，从传入的命令表<code class="docutils literal notranslate"><span class="pre">server.commands</span></code>中查找与给定命令名对应的命令结构：</p>
 <ul class="simple">
-<li><p>如果找到了对应的命令结构，那么返回它；</p></li>
+<li><p>如果找到了对应的命令结构，那么返回它，并在之后将其设置至客户端的<code class="docutils literal notranslate"><span class="pre">client-&gt;cmd</span></code>属性中；</p></li>
 <li><p>如果传入的命令还包含子命令，那么调用<code class="docutils literal notranslate"><span class="pre">server.c/lookupSubcommand()</span></code>函数进一步查找子命令对应的命令结构；</p></li>
 <li><p>最后，如果未能找到对应的命令结构，那么返回<code class="docutils literal notranslate"><span class="pre">NULL</span></code>。</p></li>
 </ul>
+<p>以<code class="docutils literal notranslate"><span class="pre">SET</span></code>命令为例，当服务器接收到客户端想要执行<code class="docutils literal notranslate"><span class="pre">SET</span></code>命令的请求时，它会根据<code class="docutils literal notranslate"><span class="pre">&quot;SET&quot;</span></code>字符串在命令表中查找与之对应的命令结构，然后把它设置到客户端<code class="docutils literal notranslate"><span class="pre">client</span></code>结构的<code class="docutils literal notranslate"><span class="pre">cmd</span></code>属性中：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">client</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="c1">// ...</span>
+
+<span class="w">    </span><span class="c1">// 正在执行的命令</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">serverCommand</span><span class="w"> </span><span class="o">*</span><span class="n">cmd</span><span class="p">;</span><span class="w">        </span><span class="cm">/* Current command. */</span>
+
+<span class="w">    </span><span class="c1">// ...</span>
+
+<span class="p">}</span><span class="w"> </span><span class="n">client</span><span class="p">;</span>
+</pre></div>
+</div>
 <p>在找到对应的命令结构之后，服务器接下来就要执行被请求的命令了，具体的流程将在下一篇文章中进行介绍。</p>
 <div class="line-block">
 <div class="line">黄健宏</div>
