@@ -4,6 +4,12 @@
 .. toctree::
    :maxdepth: 2
 
+   valkey-shared-objects
+   valkey-object-refcount
+   valkey-object-struct
+   valkey-object-encoding-convert
+   valkey-object-encoding
+   valkey-object-type
    valkey-exec-command
    valkey-lookup-command
    valkey-command-table
