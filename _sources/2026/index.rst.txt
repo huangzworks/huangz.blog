@@ -4,6 +4,7 @@
 .. toctree::
    :maxdepth: 2
 
+   rediscookbook-cache-single-item
    valkey-client-response-write
    valkey-client-response-store
    valkey-client-request
