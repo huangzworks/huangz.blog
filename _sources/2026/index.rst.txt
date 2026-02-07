@@ -4,9 +4,7 @@
 .. toctree::
    :maxdepth: 2
 
-   rediscookbook-cache-multi-items
-   rediscookbook-cache-json-item
-   rediscookbook-cache-single-item
+   rediscookbook-digest
    valkey-client-response-write
    valkey-client-response-store
    valkey-client-request
