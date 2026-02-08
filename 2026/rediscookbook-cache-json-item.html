@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>《Redis应用实例》书摘（2）：使用JSON缓存多项数据 &#8212; HUANGZ.BLOG</title>
+    <title>《Redis应用实例》书摘（2）：通过JSON序列化缓存多项数据 &#8212; HUANGZ.BLOG</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css?v=e9ae6b2d" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=eafc0fe6" />
@@ -81,7 +81,7 @@
   <ul class="dropdown-menu localtoc"
       role="menu"
       aria-labelledby="dLabelLocalToc"><ul>
-<li><a class="reference internal" href="#">《Redis应用实例》书摘（2）：使用JSON缓存多项数据</a></li>
+<li><a class="reference internal" href="#">《Redis应用实例》书摘（2）：通过JSON序列化缓存多项数据</a></li>
 </ul>
 </ul>
 </li>
@@ -123,7 +123,7 @@
     <div class="body col-md-12 content" role="main">
       
   <section id="redis-2-json">
-<h1>《Redis应用实例》书摘（2）：使用JSON缓存多项数据<a class="headerlink" href="#redis-2-json" title="Link to this heading">¶</a></h1>
+<h1>《Redis应用实例》书摘（2）：通过JSON序列化缓存多项数据<a class="headerlink" href="#redis-2-json" title="Link to this heading">¶</a></h1>
 <p>在复杂的系统中，单项数据往往只占少数，更多的是由多个项组成的复杂数据。</p>
 <p>代码清单 CODE_JSON_CACHE 展示了使用JSON缓存多项数据的方法，这个程序要做的就是在设置缓存之前把Python数据编码为JSON数据，并在获取缓存之后将JSON数据解码为Python数据。</p>
 <hr class="docutils" />
