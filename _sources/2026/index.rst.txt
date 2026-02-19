@@ -5,26 +5,4 @@
    :maxdepth: 2
 
    rediscookbook-digest
-   valkey-client-response-write
-   valkey-client-response-store
-   valkey-client-request
-   valkey-client-struct
-   valkey-shared-objects
-   valkey-object-refcount
-   valkey-object-struct
-   valkey-object-encoding-convert
-   valkey-object-encoding
-   valkey-object-type
-   valkey-exec-command
-   valkey-lookup-command
-   valkey-command-table
-   valkey-command-struct
-   valkey-multiplexing
-   valkey-time-event-process
-   valkey-file-event-process
-   valkey-time-event-struct
-   valkey-file-event-struct
-   valkey-event-state
-   valkey-event-loop
-   valkey-server-struct
-   valkey-lunch-server
+   valkey-series
